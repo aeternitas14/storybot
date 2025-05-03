@@ -1,0 +1,11 @@
+__pycache__/
+*.json
+*.log
+*.pyc
+*.db
+state.json
+alert_state_*.json
+users.json
+subscribers.json
+
+

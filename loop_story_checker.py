@@ -4,6 +4,7 @@ import requests
 import os
 import json
 print(">>> Bot started...")
+from multi_tracker import load_users
 
 TARGET_USERNAME = 'sarahjclow'
 BOT_TOKEN = '7569840561:AAHnbeez9FcYFM_IpwyxJ1AwaiqKA7r_jiA'
@@ -13,14 +14,14 @@ SUBSCRIBERS_FILE = "subscribers.json"
 
 ALERT_STATE_FILE = "alert_state.json"
 
-def get_last_alert_state():
-    if not os.path.exists(ALERT_STATE_FILE):
+def get_last_alert_state(file_path):
+    if not os.path.exists(file_path):
         return False
-    with open(ALERT_STATE_FILE, "r") as f:
+    with open(file_path, "r") as f:
         return json.load(f).get("last_alert", False)
 
-def set_last_alert_state(state):
-    with open(ALERT_STATE_FILE, "w") as f:
+def set_last_alert_state(file_path, state):
+    with open(file_path, "w") as f:
         json.dump({"last_alert": state}, f)
 
 # Load chat IDs from file
@@ -58,6 +59,7 @@ def update_subscribers():
             continue
 
 def check_story():
+    users = load_users()
     with sync_playwright() as p:
         browser = p.chromium.launch(headless=True)
         context = browser.new_context(storage_state="state.json")
@@ -65,25 +67,28 @@ def check_story():
 
         try:
             update_subscribers()
-            page.goto(f'https://www.instagram.com/{TARGET_USERNAME}/', wait_until='domcontentloaded')
-            page.wait_for_timeout(4000)
 
-            has_story = bool(page.query_selector("canvas"))
-            alert_previously_sent = get_last_alert_state()
+            for chat_id, usernames in users.items():
+                for username in usernames:
+                    alert_file = f"alert_state_{chat_id}_{username}.json"
+                    page.goto(f'https://www.instagram.com/{username}/', wait_until='domcontentloaded')
+                    page.wait_for_timeout(4000)
 
-            if has_story and not alert_previously_sent:
-                for chat_id in CHAT_IDS:
-                    send_telegram_message(f"{TARGET_USERNAME} just posted a story!", chat_id)
-                print("Story detected. Alert sent.")
-                set_last_alert_state(True)
+                    has_story = bool(page.query_selector("canvas"))
+                    alert_previously_sent = get_last_alert_state(alert_file)
 
-            elif not has_story and alert_previously_sent:
-                print("No story. Resetting alert state.")
-                set_last_alert_state(False)
+                    if has_story and not alert_previously_sent:
+                        send_telegram_message(f"{username} just posted a story!", chat_id)
+                        print(f"Story detected for {username} ({chat_id}). Alert sent.")
+                        set_last_alert_state(alert_file, True)
 
-            else:
-                print("No change in story state.")
-                
+                    elif not has_story and alert_previously_sent:
+                        print(f"No story for {username}. Resetting alert state.")
+                        set_last_alert_state(alert_file, False)
+
+                    else:
+                        print(f"No change in story state for {username}.")
+
         finally:
             browser.close()
 if __name__ == "__main__":
