@@ -93,6 +93,21 @@ def get_stalker_achievements(count):
         achievements.append("Stalking Legend 👑")
     return achievements
 
+def send_media(chat_id, file_path, caption):
+    try:
+        url = f"https://api.telegram.org/bot{BOT_TOKEN}/sendDocument"
+        with open(file_path, 'rb') as file:
+            files = {'document': file}
+            data = {'chat_id': chat_id, 'caption': caption}
+            response = requests.post(url, files=files, data=data)
+            if response.status_code != 200:
+                print(f"Error sending media: {response.text}")
+    except Exception as e:
+        print(f"Error sending media: {e}")
+
+def get_story_download_path(username):
+    return f"alert_states/{username}_stories"
+
 @app.route("/", methods=["POST"])
 def webhook():
     data = request.get_json()
@@ -119,11 +134,36 @@ I'm your ringmaster in this pathetic show. Here's your toolkit for being a profe
 /roast - Get reminded of your life decisions
 /tips - Learn from fellow circus members
 /achievements - Celebrate your downward spiral
+/download <username> - Save their stories for your collection
 /help - Too dumb to remember commands? I got you
 
 Example: /track instagram
 Now get out there and make your therapist earn their money 🤡"""
             send_message(chat_id, welcome_message)
+
+        if text == "/start":
+            if is_new_user(chat_id):
+                # New user welcome message is already sent above
+                pass
+            else:
+                # Message for existing users
+                send_message(chat_id, """Back for more emotional damage? 🤡
+
+Your circus membership is still active. Here's what you can do:
+
+/track <username> - Add to your collection of despair
+/untrack <username> - Pretend to move on (we know you won't)
+/list - See your wall of shame
+/stats - Check how far you've fallen
+/level - See your circus rank
+/roast - Get reminded of your life choices
+/tips - Learn from fellow clowns
+/achievements - Celebrate your downward spiral
+/download <username> - Save their stories for your collection
+/help - Too dumb to remember? I got you
+
+Example: /track instagram
+Your therapist is gonna love this 🤡""")
 
         if text.startswith("/track"):
             parts = text.split()
@@ -210,8 +250,29 @@ Now get out there and make your therapist earn their money 🤡"""
             else:
                 send_message(chat_id, "No achievements? You're failing at failing. Impressive. 🤡")
 
-        elif text == "/start":
-            send_message(chat_id, "Back for more emotional damage? Use /help to see all the ways you can disappoint yourself 🤡")
+        elif text.startswith("/download"):
+            parts = text.split()
+            if len(parts) == 2:
+                username = parts[1].lstrip("@")
+                if username in get_tracked_users(chat_id):
+                    story_path = get_story_download_path(username)
+                    if os.path.exists(story_path):
+                        # Get all story files
+                        story_files = [f for f in os.listdir(story_path) if f.endswith(('.jpg', '.mp4'))]
+                        if story_files:
+                            send_message(chat_id, f"Found {len(story_files)} stories from @{username}. Your collection of sadness is growing 🤡")
+                            for story_file in story_files:
+                                file_path = os.path.join(story_path, story_file)
+                                caption = f"Story from @{username} - Saved for your collection of despair 🤡"
+                                send_media(chat_id, file_path, caption)
+                        else:
+                            send_message(chat_id, f"No stories found for @{username}. Even your stalking game is weak 🤡")
+                    else:
+                        send_message(chat_id, f"No stories saved for @{username}. Your collection of sadness is empty 🤡")
+                else:
+                    send_message(chat_id, f"You're not even tracking @{username}, you absolute clown 🤡")
+            else:
+                send_message(chat_id, "Even downloading requires basic reading skills. Usage: /download <username> 🤡")
 
         elif text == "/help":
             help_message = """Welcome to the Circus 🤡
@@ -225,6 +286,7 @@ Your toolkit of self-destruction:
 /roast - Get reminded of your life choices
 /tips - Learn from fellow clowns
 /achievements - Celebrate hitting rock bottom
+/download <username> - Save their stories for your collection
 /help - Too dumb to remember? I got you
 
 Example: /track instagram

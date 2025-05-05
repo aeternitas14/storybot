@@ -4,8 +4,10 @@ import os
 import json
 import sys
 import hashlib
-from datetime import datetime
+from datetime import datetime, timedelta
 from playwright.sync_api import sync_playwright
+import asyncio
+import random
 
 class InstagramMonitor:
     def __init__(self):
@@ -51,6 +53,11 @@ class InstagramMonitor:
         if not os.path.exists(self.state_file):
             print(f"Error: {self.state_file} not found. Please log in to Instagram first.")
             sys.exit(1)
+
+        # Add session refresh settings
+        self.session_refresh_interval = timedelta(hours=12)  # Refresh every 12 hours
+        self.last_session_refresh = None
+        self.session_file = "instagram_session.json"
 
     def __del__(self):
         """Cleanup when the object is destroyed."""
@@ -144,9 +151,106 @@ class InstagramMonitor:
             print(f"Error sending Telegram message: {e}")
             return False
 
+    def is_session_expired(self):
+        if not os.path.exists(self.session_file):
+            return True
+            
+        try:
+            with open(self.session_file, "r") as f:
+                session_data = json.load(f)
+                last_refresh = datetime.fromisoformat(session_data.get("last_refresh", ""))
+                return datetime.now() - last_refresh > self.session_refresh_interval
+        except:
+            return True
+
+    def refresh_session(self):
+        try:
+            print("Refreshing Instagram session...")
+            with sync_playwright() as p:
+                browser = p.chromium.launch(headless=True)
+                context = browser.new_context(
+                    user_agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36"
+                )
+                page = context.new_page()
+                
+                # Add random delays to mimic human behavior
+                page.set_default_timeout(30000)  # 30 second timeout
+                
+                # Go to Instagram
+                page.goto('https://www.instagram.com/', wait_until='networkidle')
+                page.wait_for_timeout(random.randint(2000, 5000))  # Random delay
+                
+                # Check if already logged in
+                if page.url == 'https://www.instagram.com/':
+                    print("Already logged in, saving session...")
+                else:
+                    # Check for suspicious login attempt warning
+                    if "suspicious" in page.url.lower() or "challenge" in page.url.lower():
+                        print("Instagram detected suspicious activity. Please verify manually.")
+                        # Save the current state anyway
+                        context.storage_state(path=self.state_file)
+                        browser.close()
+                        return False
+                    
+                    # Try to log in
+                    try:
+                        # Wait for login form
+                        page.wait_for_selector('input[name="username"]', timeout=5000)
+                        
+                        # Type username with random delays
+                        page.type('input[name="username"]', os.getenv('INSTAGRAM_USERNAME'), delay=random.randint(100, 300))
+                        page.wait_for_timeout(random.randint(500, 1000))
+                        
+                        # Type password with random delays
+                        page.type('input[name="password"]', os.getenv('INSTAGRAM_PASSWORD'), delay=random.randint(100, 300))
+                        page.wait_for_timeout(random.randint(500, 1000))
+                        
+                        # Click login button
+                        page.click('button[type="submit"]')
+                        page.wait_for_timeout(random.randint(2000, 4000))
+                        
+                        # Check for any challenges or suspicious activity
+                        if "challenge" in page.url.lower() or "suspicious" in page.url.lower():
+                            print("Instagram detected suspicious activity. Please verify manually.")
+                            browser.close()
+                            return False
+                        
+                    except Exception as e:
+                        print(f"Error during login: {e}")
+                        browser.close()
+                        return False
+                
+                # Save the session state
+                context.storage_state(path=self.state_file)
+                
+                # Update session refresh timestamp
+                with open(self.session_file, "w") as f:
+                    json.dump({
+                        "last_refresh": datetime.now().isoformat(),
+                        "next_refresh": (datetime.now() + self.session_refresh_interval).isoformat(),
+                        "user_agent": context.user_agent
+                    }, f)
+                
+                browser.close()
+                print("Session refreshed successfully!")
+                return True
+        except Exception as e:
+            print(f"Error refreshing session: {e}")
+            return False
+
     def check_story(self):
         """Check for new stories and send alerts."""
         try:
+            # Check if session needs refresh
+            if self.is_session_expired():
+                print("Session expired, attempting refresh...")
+                if not self.refresh_session():
+                    print("Failed to refresh session. Stories might not be accessible.")
+                    # Try to use existing session anyway
+                    if not os.path.exists(self.state_file):
+                        print("No session file found. Stories will not be accessible.")
+                        return
+            
             # Load users
             users = self.load_users()
             if not users:
@@ -239,6 +343,55 @@ class InstagramMonitor:
             except Exception as e:
                 print(f"\nError in main loop: {e}")
                 time.sleep(5)  # wait 5 seconds before retrying
+
+    def save_story(self, username, story_url, story_type):
+        try:
+            # Create directory if it doesn't exist
+            story_dir = f"{self.alert_states_dir}/{username}_stories"
+            os.makedirs(story_dir, exist_ok=True)
+            
+            # Generate filename with timestamp
+            timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+            extension = ".mp4" if story_type == "video" else ".jpg"
+            filename = f"{story_dir}/{timestamp}{extension}"
+            
+            # Download and save the story
+            response = requests.get(story_url)
+            if response.status_code == 200:
+                with open(filename, 'wb') as f:
+                    f.write(response.content)
+                return True
+            return False
+        except Exception as e:
+            print(f"Error saving story: {e}")
+            return False
+
+    async def check_stories(self):
+        while True:
+            try:
+                with open(self.users_file, "r") as f:
+                    users = json.load(f)
+                
+                for chat_id, tracked_users in users.items():
+                    for username in tracked_users:
+                        try:
+                            # ... existing story checking code ...
+                            
+                            if new_stories:
+                                for story in new_stories:
+                                    # Save the story
+                                    if self.save_story(username, story['url'], story['type']):
+                                        # Send notification with download option
+                                        message = f"New story from @{username} 🤡\nUse /download {username} to save it to your collection of despair"
+                                        self.send_telegram_message(message, chat_id)
+                        
+                        except Exception as e:
+                            print(f"Error checking stories for {username}: {e}")
+                
+                await asyncio.sleep(60)  # Check every minute
+            except Exception as e:
+                print(f"Error in main loop: {e}")
+                await asyncio.sleep(60)
 
 if __name__ == "__main__":
     try:

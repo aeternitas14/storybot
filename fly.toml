@@ -12,6 +12,8 @@ primary_region = "lax"
 [env]
   PORT = "8080"
   PYTHONUNBUFFERED = "1"
+  INSTAGRAM_USERNAME = "pearlygatesbaby"
+  # INSTAGRAM_PASSWORD will be set as a secret
 
 [[services]]
   internal_port = 8080
@@ -42,6 +44,7 @@ primary_region = "lax"
 [mounts]
   source = "clowtracker_data"
   destination = "/app/alert_states"
+  size = "10gb"
 
 [processes]
   app = "python3 run_bot.py & python3 instagram_monitor.py"
