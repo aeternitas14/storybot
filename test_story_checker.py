@@ -5,6 +5,9 @@ import json
 import requests
 from instagram_monitor import InstagramMonitor
 
+# Set the BOT_TOKEN environment variable
+os.environ['BOT_TOKEN'] = '7569840561:AAHnbeez9FcYFM_IpwyxJ1AwaiqKA7r_jiA'
+
 # Setup logging
 logging.basicConfig(
     level=logging.INFO,
@@ -115,4 +118,4 @@ async def main():
         logger.error(f"Error in main: {e}")
 
 if __name__ == "__main__":
-    asyncio.run(main()) 
+    asyncio.run(main())

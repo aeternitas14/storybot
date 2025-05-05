@@ -128,225 +128,58 @@ class InstagramMonitor:
                         '--window-size=1920,1080'
                     ]
                 )
-                
-                # Create a more realistic browser context
-                self.context = await self.browser.new_context(
-                    viewport={'width': 1920, 'height': 1080},
-                    user_agent='Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36',
-                    locale='en-US',
-                    timezone_id='America/New_York',
-                    permissions=['geolocation'],
-                    geolocation={'latitude': 40.7128, 'longitude': -74.0060},  # New York coordinates
-                    extra_http_headers={
-                        'Accept-Language': 'en-US,en;q=0.9',
-                        'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8',
-                        'Accept-Encoding': 'gzip, deflate, br',
-                        'Connection': 'keep-alive',
-                        'Upgrade-Insecure-Requests': '1',
-                        'Sec-Fetch-Dest': 'document',
-                        'Sec-Fetch-Mode': 'navigate',
-                        'Sec-Fetch-Site': 'none',
-                        'Sec-Fetch-User': '?1',
-                        'DNT': '1'
-                    }
-                )
-                
-                # Add random mouse movements and delays to simulate human behavior
-                await self.context.route("**/*", lambda route: route.continue_())
+                self.context = await self.browser.new_context()
                 self.page = await self.context.new_page()
-                
-                # Enable JavaScript and cookies
-                await self.page.set_extra_http_headers({
-                    'Cookie': 'ig_did=random_string; ig_nrcb=1'
-                })
 
-            # Check if we need to wait before attempting login
-            if self.last_login_time:
-                time_since_last_login = datetime.now() - self.last_login_time
-                if time_since_last_login < timedelta(hours=6):
-                    logger.info(f"Waiting {6 - time_since_last_login.seconds/3600:.1f} hours before next login attempt")
-                    return False
-
-            logger.info("Navigating to Instagram login page...")
             await self.page.goto('https://www.instagram.com/accounts/login/', wait_until='domcontentloaded')
-            await asyncio.sleep(random.uniform(2, 4))  # Random delay
+            await asyncio.sleep(2)  # Allow page to load
 
-            # Simulate human-like mouse movement
-            await self.page.mouse.move(
-                random.randint(100, 500),
-                random.randint(100, 500)
-            )
-            await asyncio.sleep(random.uniform(0.5, 1.5))
+            # Updated selectors for username and password fields
+            username_field = await self.page.query_selector('input[name="username"]')
+            password_field = await self.page.query_selector('input[name="password"]')
 
-            # Try multiple selectors for username field
-            username_selectors = [
-                'input[name="username"]',
-                'input[aria-label="Phone number, username, or email"]',
-                'input[aria-label="Phone number, username, or email address"]',
-                'input[type="text"]'
-            ]
-            
-            username_field = None
-            for selector in username_selectors:
-                try:
-                    username_field = await self.page.wait_for_selector(selector, timeout=5000)
-                    if username_field:
-                        break
-                except TimeoutError:
-                    continue
-
-            if not username_field:
-                logger.error("Could not find username field")
+            if not username_field or not password_field:
+                logger.error("Could not find username or password field.")
                 return False
 
-            # Type username with random delays between characters
-            username = os.getenv('INSTAGRAM_USERNAME')
-            for char in username:
-                await username_field.type(char, delay=random.uniform(100, 300))
-            await asyncio.sleep(random.uniform(0.5, 1.5))
-            
-            # Try multiple selectors for password field
-            password_selectors = [
-                'input[name="password"]',
-                'input[aria-label="Password"]',
-                'input[type="password"]'
-            ]
-            
-            password_field = None
-            for selector in password_selectors:
-                try:
-                    password_field = await self.page.wait_for_selector(selector, timeout=5000)
-                    if password_field:
-                        break
-                except TimeoutError:
-                    continue
+            # Enter credentials
+            await username_field.fill(self.instagram_username)
+            await password_field.fill(self.instagram_password)
 
-            if not password_field:
-                logger.error("Could not find password field")
-                return False
-
-            # Type password with random delays between characters
-            password = os.getenv('INSTAGRAM_PASSWORD')
-            for char in password:
-                await password_field.type(char, delay=random.uniform(100, 300))
-            await asyncio.sleep(random.uniform(0.5, 1.5))
-            
-            # Try multiple selectors for login button
-            login_button_selectors = [
-                'button[type="submit"]',
-                'button:has-text("Log in")',
-                'button:has-text("Log In")',
-                'button:has-text("Login")'
-            ]
-            
-            login_button = None
-            for selector in login_button_selectors:
-                try:
-                    login_button = await self.page.wait_for_selector(selector, timeout=5000)
-                    if login_button:
-                        break
-                except TimeoutError:
-                    continue
-
+            # Updated selector for login button
+            login_button = await self.page.query_selector('button[type="submit"]')
             if not login_button:
-                logger.error("Could not find login button")
+                logger.error("Could not find login button.")
                 return False
 
-            # Move mouse to button and click
-            button_box = await login_button.bounding_box()
-            if button_box:
-                await self.page.mouse.move(
-                    button_box['x'] + random.randint(5, 15),
-                    button_box['y'] + random.randint(5, 15)
-                )
-                await asyncio.sleep(random.uniform(0.2, 0.5))
             await login_button.click()
-            await asyncio.sleep(random.uniform(3, 5))  # Random delay after clicking
+            await asyncio.sleep(5)  # Wait for login to process
 
-            # Handle various dialogs and challenges
-            dialogs = [
-                ('text="Save Info"', 'Save Info'),
-                ('text="Not Now"', 'Not Now'),
-                ('text="Turn On"', 'Turn On'),
-                ('text="Not Now"', 'Not Now')
-            ]
+            # Check for successful login
+            if await self.page.query_selector('svg[aria-label="Home"]'):
+                logger.info("Successfully logged in to Instagram.")
+                self.last_login_time = datetime.now()
+                return True
 
-            for selector, action in dialogs:
-                try:
-                    element = await self.page.wait_for_selector(selector, timeout=3000)
-                    if element:
-                        await element.click()
-                        logger.info(f"Handled {action} dialog.")
-                        await asyncio.sleep(random.uniform(0.5, 1.5))
-                except TimeoutError:
-                    continue
+            # Check for login error messages
+            error_message = await self.page.query_selector('p[data-testid="login-error-message"]')
+            if error_message:
+                error_text = await error_message.text_content()
+                logger.error(f"Login failed: {error_text}")
+                return False
 
-            # Check for various login challenges
-            challenges = [
-                ('text="Enter Security Code"', '2FA verification required'),
-                ('text="Suspicious Login Attempt"', 'Suspicious login attempt detected'),
-                ('text="Verify Your Account"', 'Account verification required'),
-                ('text="We Detected an Unusual Login Attempt"', 'Unusual login attempt detected')
-            ]
-
-            for selector, message in challenges:
-                try:
-                    element = await self.page.wait_for_selector(selector, timeout=3000)
-                    if element:
-                        logger.error(f"{message} - please handle manually")
-                        return False
-                except TimeoutError:
-                    continue
-
-            # Final check: Are we logged in?
-            home_indicators = [
-                'svg[aria-label="Home"]',
-                'a[href="/"]',
-                'a[href="/home/"]',
-                'div[role="navigation"]'
-            ]
-
-            for selector in home_indicators:
-                try:
-                    if await self.page.wait_for_selector(selector, timeout=5000):
-                        logger.info("Successfully logged in to Instagram.")
-                        self.last_login_time = datetime.now()
-                        return True
-                except TimeoutError:
-                    continue
-
-            # Check for login error
-            error_selectors = [
-                'p[data-testid="login-error-message"]',
-                'div[role="alert"]',
-                'p[class*="error"]',
-                'div[class*="error"]'
-            ]
-
-            for selector in error_selectors:
-                try:
-                    error_elem = await self.page.query_selector(selector)
-                    if error_elem:
-                        error_text = await error_elem.text_content()
-                        logger.error(f"Login failed: {error_text}")
-                        return False
-                except Exception:
-                    continue
-
-            # Save debug information
-            content = await self.page.content()
-            with open('debug_instagram_login.html', 'w') as f:
-                f.write(content)
-            logger.error("Login failed: unknown reason. Check debug_instagram_login.html")
+            logger.error("Login failed for an unknown reason.")
             return False
 
         except Exception as e:
-            logger.error(f"Error logging in to Instagram: {str(e)}")
+            logger.error(f"Error during Instagram login: {e}")
+            return False
+
+        finally:
             if self.page:
                 content = await self.page.content()
                 with open('debug_instagram_login.html', 'w') as f:
                     f.write(content)
-            return False
 
     async def handle_route(self, route):
         """Handle request interception."""
@@ -564,4 +397,4 @@ if __name__ == "__main__":
         except Exception as e:
             print(f"\nFatal error: {e}")
 
-    asyncio.run(main()) 
+    asyncio.run(main())
