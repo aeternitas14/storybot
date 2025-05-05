@@ -1,48 +1,106 @@
 # ClowTracker 🎪
 
-A fun and sarcastic Instagram story tracking bot that helps you stay updated with your favorite accounts' stories.
+A sarcastic Telegram bot that helps you track Instagram stories with style! Built with Python, Flask, and a healthy dose of humor.
 
-## Features
+## Features 🎭
 
-- Track Instagram stories with fun, sarcastic messages
-- Get roasted for your stalking habits
-- Earn achievements and level up your stalking game
-- Get pro stalking tips
-- Multi-user support
-- Automatic story alerts
+- Track Instagram stories of any public account
+- Get instant notifications when new stories are posted
+- Sarcastic responses and fun interactions
+- Achievement system and stalking levels
+- Health monitoring and metrics
 
-## Commands
+### Commands 📝
 
-- `/track <username>` - Start stalking someone 🕵️‍♂️
-- `/untrack <username>` - Stop being a creep 🙈
-- `/list` - See your stalking list 📝
-- `/stats` - See how much of a stalker you are 📊
-- `/level` - Check your stalking level 🏆
+- `/track <username>` - Start tracking someone's stories 🕵️‍♂️
+- `/untrack <username>` - Stop tracking someone's stories 🙈
+- `/list` - See all accounts you're tracking 📋
+- `/stats` - Check your stalking statistics 📊
+- `/level` - See your current stalking level 🏆
 - `/roast` - Get roasted for your stalking habits 🔥
 - `/tips` - Get pro stalking tips 🎯
-- `/achievements` - See your stalking achievements 🏅
-- `/help` - Show all commands 💡
+- `/achievements` - View your stalking achievements 🏅
+- `/help` - Show all available commands 💡
 
-## Deployment
+## Deployment 🚀
 
-The bot is deployed on Fly.io. To deploy your own instance:
+The bot is deployed on Fly.io with automatic health checks and monitoring.
 
-1. Install the [Fly.io CLI](https://fly.io/docs/hands-on/install-flyctl/)
-2. Run `flyctl auth signup` or `flyctl auth login`
-3. Run `flyctl launch` to create a new app
-4. Set your bot token: `flyctl secrets set BOT_TOKEN=your_bot_token`
-5. Deploy: `flyctl deploy`
+### Prerequisites
 
-## Development
+- Python 3.x
+- Playwright
+- Flask
+- Required Python packages in `requirements.txt`
 
-1. Clone the repository
-2. Install dependencies: `pip install -r requirements.txt`
-3. Set up environment variables:
-   ```
-   BOT_TOKEN=your_bot_token
-   ```
-4. Run the bot: `python3 run_bot.py`
+### Environment Variables
 
-## License
+- `BOT_TOKEN` - Your Telegram bot token
+- `PORT` - Server port (default: 8080 on Fly.io, 5001 locally)
 
-MIT License - Feel free to use and modify!
+### Installation
+
+1. Clone the repository:
+```bash
+git clone https://github.com/yourusername/clowtracker.git
+cd clowtracker
+```
+
+2. Install dependencies:
+```bash
+pip install -r requirements.txt
+```
+
+3. Install Playwright:
+```bash
+playwright install chromium
+playwright install-deps
+```
+
+### Running Locally
+
+```bash
+python3 run_bot.py
+python3 instagram_monitor.py
+```
+
+### Deploying to Fly.io
+
+1. Install Fly.io CLI
+2. Login to Fly.io
+3. Create the app:
+```bash
+flyctl apps create
+```
+
+4. Set up volumes:
+```bash
+flyctl volumes create clowtracker_data -r lax -n 2
+```
+
+5. Deploy:
+```bash
+flyctl deploy
+```
+
+## Monitoring 📊
+
+- Health checks run every 30 seconds
+- Metrics available at `/metrics`
+- Logs accessible via `flyctl logs`
+
+## Files 📁
+
+- `run_bot.py` - Main Telegram bot server
+- `instagram_monitor.py` - Instagram story monitoring
+- `multi_tracker.py` - User tracking management
+- `users.json` - User data storage
+- `alert_states/` - Story state tracking
+
+## Contributing 🤝
+
+Feel free to contribute! Just don't make the bot too nice - we have a reputation to maintain. 😈
+
+## License 📄
+
+MIT License - Feel free to use it, but don't blame us for any stalking-related incidents! 🎭

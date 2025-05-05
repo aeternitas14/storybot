@@ -5,7 +5,7 @@ import json
 import random
 import time
 from datetime import datetime
-from multi_tracker import add_user, is_new_user, remove_user, get_tracked_users
+from multi_tracker import add_user, is_new_user, remove_user, get_tracked_users, update_users
 
 app = Flask(__name__)
 BOT_TOKEN = os.getenv("BOT_TOKEN", "7569840561:AAHnbeez9FcYFM_IpwyxJ1AwaiqKA7r_jiA")
@@ -48,10 +48,20 @@ STALKER_TIPS = [
     "Did you know? You can see who viewed their stories if you're quick enough! 🏃‍♂️"
 ]
 
-def send_message(chat_id, text):
-    url = f"https://api.telegram.org/bot{BOT_TOKEN}/sendMessage"
-    data = {"chat_id": chat_id, "text": text}
+def send_typing(chat_id):
+    url = f"https://api.telegram.org/bot{BOT_TOKEN}/sendChatAction"
+    data = {"chat_id": chat_id, "action": "typing"}
     requests.post(url, data=data)
+
+def send_message(chat_id, text):
+    try:
+        url = f"https://api.telegram.org/bot{BOT_TOKEN}/sendMessage"
+        data = {"chat_id": chat_id, "text": text}
+        response = requests.post(url, data=data)
+        if response.status_code != 200:
+            print(f"Error sending message: {response.text}")
+    except Exception as e:
+        print(f"Error sending message: {e}")
 
 def get_stalker_level(count):
     if count == 0:
@@ -90,6 +100,10 @@ def webhook():
         message = data["message"]
         chat_id = str(message["chat"]["id"])
         text = message.get("text", "")
+
+        # Send typing indicator for all commands
+        if text.startswith("/"):
+            send_typing(chat_id)
 
         # Check if this is a new user
         if is_new_user(chat_id):
@@ -135,6 +149,7 @@ Happy stalking! 🍆 💦"""
                 send_message(chat_id, "Bruh, learn to use commands properly! Usage: /untrack <instagram_username> 🤦‍♂️")
         
         elif text == "/list":
+            send_typing(chat_id)  # Send typing indicator for list command
             tracked_users = get_tracked_users(chat_id)
             if tracked_users:
                 user_list = "\n".join([f"- @{user} 👀" for user in tracked_users])
@@ -218,6 +233,34 @@ Happy stalking! 🍆 💦"""
         print("Webhook error:", e)
     return {"ok": True}
 
+@app.route("/health", methods=["GET"])
+def health_check():
+    return {"status": "healthy", "timestamp": datetime.now().isoformat()}
+
+@app.route("/metrics", methods=["GET"])
+def metrics():
+    try:
+        # Get basic metrics
+        total_users = len(get_all_users())
+        active_trackers = sum(1 for users in get_all_users().values() if users)
+        return {
+            "total_users": total_users,
+            "active_trackers": active_trackers,
+            "timestamp": datetime.now().isoformat()
+        }
+    except Exception as e:
+        return {"error": str(e)}, 500
+
+def get_all_users():
+    try:
+        with open("users.json", "r") as f:
+            return json.load(f)
+    except (FileNotFoundError, json.JSONDecodeError):
+        return {}
+
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5001)
+    # Use port 8080 on Fly.io, 5001 locally
+    is_fly_io = os.getenv("FLY_APP_NAME") is not None
+    port = int(os.environ.get("PORT", "8080")) if is_fly_io else 5001
+    app.run(host="0.0.0.0", port=port)
 

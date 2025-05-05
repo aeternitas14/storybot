@@ -11,29 +11,47 @@ primary_region = "lax"
 
 [env]
   PORT = "8080"
+  PYTHONUNBUFFERED = "1"
 
-[http_service]
+[[services]]
   internal_port = 8080
-  force_https = true
+  protocol = "tcp"
   auto_stop_machines = false
   auto_start_machines = true
   min_machines_running = 1
   processes = ["app"]
 
-[[http_service.ports]]
-  port = 80
-  handlers = ["http"]
-  force_https = true
+  [[services.ports]]
+    handlers = ["http"]
+    port = 80
+    force_https = true
 
-[[http_service.ports]]
-  port = 443
-  handlers = ["tls", "http"]
+  [[services.ports]]
+    handlers = ["tls", "http"]
+    port = 443
+
+  [[services.http_checks]]
+    interval = "30s"
+    timeout = "5s"
+    grace_period = "10s"
+    method = "get"
+    path = "/health"
+    protocol = "http"
+    tls_skip_verify = false
+
+[mounts]
+  source = "clowtracker_data"
+  destination = "/app/alert_states"
 
 [processes]
-  app = "python instagram_monitor.py"
+  app = "python3 run_bot.py & python3 instagram_monitor.py"
 
 [[vm]]
   memory = '1gb'
   cpu_kind = 'shared'
   cpus = 1
+
+[metrics]
+  port = 8080
+  path = "/metrics"
 
