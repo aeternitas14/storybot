@@ -5,399 +5,444 @@ import json
 import sys
 import hashlib
 from datetime import datetime, timedelta
-from playwright.sync_api import sync_playwright
+from playwright.async_api import async_playwright, TimeoutError
+import logging
+from typing import Dict, List, Optional, Any
 import asyncio
-import random
+
+logger = logging.getLogger(__name__)
 
 class InstagramMonitor:
     def __init__(self):
-        # Set up logging
-        self.log_file = open("log.txt", "a")
-        self.original_stdout = sys.stdout
-        self.original_stderr = sys.stderr
-        
-        # Create a custom print function that writes to both file and terminal
-        class DualOutput:
-            def __init__(self, log_file, original_stdout):
-                self.log_file = log_file
-                self.original_stdout = original_stdout
-
-            def write(self, message):
-                if message.strip():
-                    timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-                    log_message = f"[{timestamp}] {message}"
-                    self.log_file.write(log_message)
-                    self.log_file.flush()
-                self.original_stdout.write(message)
-
-            def flush(self):
-                self.log_file.flush()
-                self.original_stdout.flush()
-
-        sys.stdout = sys.stderr = DualOutput(self.log_file, self.original_stdout)
-
-        print("\n>>> Instagram Monitor started...")
-
         # Configuration
-        self.bot_token = '7569840561:AAHnbeez9FcYFM_IpwyxJ1AwaiqKA7r_jiA'
+        self.bot_token = os.getenv('BOT_TOKEN', '7569840561:AAHnbeez9FcYFM_IpwyxJ1AwaiqKA7r_jiA')
+        self.instagram_username = os.getenv('INSTAGRAM_USERNAME', 'pearlygatesbaby')
+        self.instagram_password = os.getenv('INSTAGRAM_PASSWORD', 'Bodrum41')
         self.check_interval_minutes = 5
-        self.users_file = "users.json"
+        self.max_retries = 3
+        self.retry_delay = 5
+        
+        # Setup logging
+        logging.basicConfig(
+            level=logging.INFO,
+            format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
+        )
+        
+        # Ensure required directories exist
         self.alert_states_dir = "alert_states"
-        self.state_file = "state.json"
+        os.makedirs(self.alert_states_dir, exist_ok=True)
+        
+        # Load tracked users
+        self.users_file = "users.json"
+        self.tracked_users = self.load_users()
+        
+        # Initialize browser context
+        self.browser = None
+        self.context = None
+        self.page = None
+        self.last_login_time = None
+        self.login_interval = timedelta(hours=6)  # Re-login every 6 hours
 
-        # Create alert states directory if it doesn't exist
-        if not os.path.exists(self.alert_states_dir):
-            os.makedirs(self.alert_states_dir)
-
-        # Verify required files exist
-        if not os.path.exists(self.state_file):
-            print(f"Error: {self.state_file} not found. Please log in to Instagram first.")
-            sys.exit(1)
-
-        # Add session refresh settings
-        self.session_refresh_interval = timedelta(hours=12)  # Refresh every 12 hours
-        self.last_session_refresh = None
-        self.session_file = "instagram_session.json"
-
-    def __del__(self):
-        """Cleanup when the object is destroyed."""
-        if hasattr(self, 'log_file'):
-            self.log_file.close()
-        sys.stdout = self.original_stdout
-        sys.stderr = self.original_stderr
-
-    def load_users(self):
+    def load_users(self) -> Dict[str, List[str]]:
         """Load users from the users file."""
         if not os.path.exists(self.users_file):
-            print(f"Error: {self.users_file} not found")
             return {}
-            
         try:
             with open(self.users_file, "r") as f:
-                users = json.load(f)
-                if not isinstance(users, dict):
-                    print(f"Error: {self.users_file} does not contain a valid dictionary")
-                    return {}
-                print(f"Loaded {len(users)} users from {self.users_file}")
-                return users
+                return json.load(f)
         except Exception as e:
-            print(f"Error loading users: {e}")
+            logger.error(f"Error loading users: {e}")
             return {}
 
-    def get_last_alert_state(self, username):
+    def save_users(self, users: Dict[str, List[str]]) -> None:
+        """Save users to the users file."""
+        try:
+            with open(self.users_file, "w") as f:
+                json.dump(users, f)
+        except Exception as e:
+            logger.error(f"Error saving users: {e}")
+
+    def get_story_hash(self, content: bytes) -> str:
+        """Create a unique hash from story content."""
+        return hashlib.sha256(content).hexdigest()
+
+    def get_last_alert_state(self, username: str) -> Dict[str, Any]:
         """Get the last alert state for a user."""
         file_path = os.path.join(self.alert_states_dir, f"{username}.json")
         if not os.path.exists(file_path):
-            print(f"Alert state file for {username} not found. Creating new one.")
-            with open(file_path, "w") as f:
-                json.dump({"last_alert": "", "last_check": "", "alerted_chats": []}, f)
-            return {"hash": "", "timestamp": "", "alerted_chats": []}
-            
+            return {"hashes": {}, "timestamp": "", "last_check": ""}
         try:
             with open(file_path, "r") as f:
-                data = json.load(f)
-                return {
-                    "hash": data.get("last_alert", ""),
-                    "timestamp": data.get("last_check", ""),
-                    "alerted_chats": data.get("alerted_chats", [])
-                }
+                return json.load(f)
         except Exception as e:
-            print(f"Error reading alert state file for {username}: {e}")
-            return {"hash": "", "timestamp": "", "alerted_chats": []}
+            logger.error(f"Error reading alert state for {username}: {e}")
+            return {"hashes": {}, "timestamp": "", "last_check": ""}
 
-    def set_last_alert_state(self, username, thumbnail_url, alerted_chats):
+    def set_last_alert_state(self, username: str, state: Dict[str, Any]) -> None:
         """Set the last alert state for a user."""
-        if not thumbnail_url:
-            print("No thumbnail URL provided to set_last_alert_state.")
-            return
-            
         try:
             file_path = os.path.join(self.alert_states_dir, f"{username}.json")
-            hash_val = hashlib.sha256(thumbnail_url.encode()).hexdigest()
-            timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-            
             with open(file_path, "w") as f:
-                json.dump({
-                    "last_alert": hash_val,
-                    "last_check": timestamp,
-                    "alerted_chats": alerted_chats
-                }, f)
+                json.dump(state, f)
         except Exception as e:
-            print(f"Error setting alert state for {username}: {e}")
+            logger.error(f"Error saving alert state for {username}: {e}")
 
-    def get_story_thumbnail_url(self, page):
-        """Get the story thumbnail URL from the page."""
-        try:
-            img = page.query_selector('header ~ div img')
-            if img:
-                return img.get_attribute("src")
-            print("No story thumbnail found on page")
-        except Exception as e:
-            print(f"Error getting thumbnail: {e}")
-        return None
-
-    def send_telegram_message(self, message, chat_id):
+    def send_telegram_message(self, chat_id: str, message: str) -> bool:
         """Send a message via Telegram bot."""
         try:
             url = f"https://api.telegram.org/bot{self.bot_token}/sendMessage"
-            data = {"chat_id": chat_id, "text": message}
+            data = {"chat_id": chat_id, "text": message, "parse_mode": "HTML"}
             response = requests.post(url, data=data)
             if response.ok:
-                print(f"Successfully sent alert to {chat_id}")
+                logger.info(f"Sent alert to {chat_id}")
             else:
-                print(f"Failed to send alert to {chat_id}: {response.status_code} - {response.text}")
+                logger.error(f"Failed to send alert to {chat_id}: {response.text}")
             return response.ok
         except Exception as e:
-            print(f"Error sending Telegram message: {e}")
+            logger.error(f"Error sending Telegram message: {e}")
             return False
 
-    def is_session_expired(self):
-        if not os.path.exists(self.session_file):
+    def should_relogin(self) -> bool:
+        """Check if we should re-login to Instagram."""
+        if not self.last_login_time:
             return True
-            
-        try:
-            with open(self.session_file, "r") as f:
-                session_data = json.load(f)
-                last_refresh = datetime.fromisoformat(session_data.get("last_refresh", ""))
-                return datetime.now() - last_refresh > self.session_refresh_interval
-        except:
-            return True
+        return datetime.now() - self.last_login_time > self.login_interval
 
-    def refresh_session(self):
-        try:
-            print("Refreshing Instagram session...")
-            with sync_playwright() as p:
-                browser = p.chromium.launch(headless=True)
-                context = browser.new_context(
-                    user_agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36"
-                )
-                page = context.new_page()
+    async def login_to_instagram(self) -> bool:
+        """Login to Instagram and return the page."""
+        for attempt in range(self.max_retries):
+            try:
+                if self.browser is None:
+                    playwright = await async_playwright().start()
+                    self.browser = await playwright.chromium.launch(headless=True)
+                    self.context = await self.browser.new_context()
+                    self.page = await self.context.new_page()
+
+                # Navigate to Instagram login page
+                await self.page.goto("https://www.instagram.com/accounts/login/")
                 
-                # Add random delays to mimic human behavior
-                page.set_default_timeout(30000)  # 30 second timeout
+                # Wait for login form
+                await self.page.wait_for_selector('input[name="username"]', timeout=10000)
                 
-                # Go to Instagram
-                page.goto('https://www.instagram.com/', wait_until='networkidle')
-                page.wait_for_timeout(random.randint(2000, 5000))  # Random delay
+                # Fill in login credentials
+                await self.page.fill('input[name="username"]', self.instagram_username)
+                await self.page.fill('input[name="password"]', self.instagram_password)
                 
-                # Check if already logged in
-                if page.url == 'https://www.instagram.com/':
-                    print("Already logged in, saving session...")
+                # Click login button
+                await self.page.click('button[type="submit"]')
+                
+                # Wait for login to complete
+                await self.page.wait_for_selector('svg[aria-label="Home"]', timeout=10000)
+                
+                self.last_login_time = datetime.now()
+                logger.info("Successfully logged in to Instagram")
+                return True
+                
+            except Exception as e:
+                logger.error(f"Error logging in to Instagram (attempt {attempt + 1}): {e}")
+                await self.cleanup_browser()
+                if attempt < self.max_retries - 1:
+                    await asyncio.sleep(self.retry_delay)
                 else:
-                    # Check for suspicious login attempt warning
-                    if "suspicious" in page.url.lower() or "challenge" in page.url.lower():
-                        print("Instagram detected suspicious activity. Please verify manually.")
-                        # Save the current state anyway
-                        context.storage_state(path=self.state_file)
-                        browser.close()
-                        return False
+                    return False
+
+    async def cleanup_browser(self) -> None:
+        """Clean up browser resources."""
+        if self.browser:
+            try:
+                await self.browser.close()
+            except Exception as e:
+                logger.error(f"Error closing browser: {e}")
+            finally:
+                self.browser = None
+                self.context = None
+                self.page = None
+
+    async def download_media_content(self, url: str) -> Optional[bytes]:
+        """Download media content from URL."""
+        try:
+            response = requests.get(url, timeout=10)
+            if response.ok:
+                return response.content
+            logger.error(f"Failed to download media: {response.status_code}")
+            return None
+        except Exception as e:
+            logger.error(f"Error downloading media: {e}")
+            return None
+
+    async def get_story_content(self, story_element) -> Dict[str, Any]:
+        """Extract and process story content including media and screenshot."""
+        try:
+            # Get media elements
+            media = await story_element.query_selector('img[decoding="auto"], video source')
+            if not media:
+                logger.warning("No media element found in story")
+                return None
+
+            # Get content type and URL
+            tag_name = await media.get_attribute('tagName')
+            content_type = 'video' if tag_name.lower() == 'video' or tag_name.lower() == 'source' else 'image'
+            content_url = await media.get_attribute('src')
+            
+            if not content_url:
+                logger.warning("Could not get content URL")
+                return None
+
+            # Take full screenshot of the story with maximum quality
+            screenshot = await story_element.screenshot(
+                type='png',
+                animations='disabled',  # Capture the current frame for videos
+                scale='css',  # Use CSS pixels for consistent sizing
+                quality=100  # Maximum quality for PNG
+            )
+            
+            if not screenshot:
+                logger.warning("Could not take screenshot")
+                return None
+
+            # Download the actual media content
+            media_content = await self.download_media_content(content_url)
+            if not media_content:
+                logger.warning("Could not download media content, falling back to screenshot only")
+            
+            # Generate hashes for both screenshot and media content
+            screenshot_hash = self.get_story_hash(screenshot)
+            media_hash = self.get_story_hash(media_content) if media_content else None
+            
+            logger.info(f"Generated hashes for story - Screenshot: {screenshot_hash[:8]}... Media: {media_hash[:8] if media_hash else 'None'}")
+            
+            return {
+                'type': content_type,
+                'url': content_url,
+                'screenshot': screenshot,
+                'screenshot_hash': screenshot_hash,
+                'media_content': media_content,
+                'media_hash': media_hash,
+                'timestamp': datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+            }
+        except Exception as e:
+            logger.error(f"Error processing story content: {e}")
+            return None
+
+    def generate_hash_key(self, username: str, chat_id: str, story: Dict[str, Any]) -> str:
+        """
+        Generate a unique hash key for a story that combines:
+        - Username
+        - Chat ID
+        - Date (YYYYMMDD format)
+        - First 8 chars of screenshot hash
+        - First 8 chars of media hash (if available)
+        """
+        date_str = datetime.now().strftime("%Y%m%d")
+        screenshot_hash_prefix = story['screenshot_hash'][:8]
+        media_hash_prefix = story.get('media_hash', '')[:8] if story.get('media_hash') else 'no-media'
+        
+        return f"{username}-{chat_id}-{date_str}-{screenshot_hash_prefix}-{media_hash_prefix}"
+
+    def compare_story_content(self, new_content: Dict[str, Any], old_hashes: Dict[str, str]) -> bool:
+        """
+        Compare story content with previously seen stories using both screenshot and media hashes.
+        Returns True if the story is new, False if it's been seen before.
+        """
+        if not new_content:
+            return False
+            
+        # Get new content hashes
+        screenshot_hash = new_content['screenshot_hash']
+        media_hash = new_content.get('media_hash')
+        
+        # If we have no previous hashes, it's definitely new
+        if not old_hashes:
+            return True
+            
+        for hash_key, stored_hashes in old_hashes.items():
+            try:
+                # Split stored combined hash into screenshot and media hashes
+                stored_screenshot_hash, stored_media_hash = stored_hashes.split(':')
+                
+                # Story is considered the same if either:
+                # 1. Screenshot hashes match
+                # 2. Media hashes exist and match
+                if screenshot_hash == stored_screenshot_hash:
+                    logger.info(f"Found matching screenshot hash in {hash_key}")
+                    return False
+                if media_hash and stored_media_hash and media_hash == stored_media_hash:
+                    logger.info(f"Found matching media hash in {hash_key}")
+                    return False
                     
-                    # Try to log in
-                    try:
-                        # Wait for login form
-                        page.wait_for_selector('input[name="username"]', timeout=5000)
-                        
-                        # Type username with random delays
-                        page.type('input[name="username"]', os.getenv('INSTAGRAM_USERNAME'), delay=random.randint(100, 300))
-                        page.wait_for_timeout(random.randint(500, 1000))
-                        
-                        # Type password with random delays
-                        page.type('input[name="password"]', os.getenv('INSTAGRAM_PASSWORD'), delay=random.randint(100, 300))
-                        page.wait_for_timeout(random.randint(500, 1000))
-                        
-                        # Click login button
-                        page.click('button[type="submit"]')
-                        page.wait_for_timeout(random.randint(2000, 4000))
-                        
-                        # Check for any challenges or suspicious activity
-                        if "challenge" in page.url.lower() or "suspicious" in page.url.lower():
-                            print("Instagram detected suspicious activity. Please verify manually.")
-                            browser.close()
-                            return False
-                        
-                    except Exception as e:
-                        print(f"Error during login: {e}")
-                        browser.close()
-                        return False
-                
-                # Save the session state
-                context.storage_state(path=self.state_file)
-                
-                # Update session refresh timestamp
-                with open(self.session_file, "w") as f:
-                    json.dump({
-                        "last_refresh": datetime.now().isoformat(),
-                        "next_refresh": (datetime.now() + self.session_refresh_interval).isoformat(),
-                        "user_agent": context.user_agent
-                    }, f)
-                
-                browser.close()
-                print("Session refreshed successfully!")
-                return True
-        except Exception as e:
-            print(f"Error refreshing session: {e}")
-            return False
+            except ValueError:
+                # Handle legacy format or corrupted hash entries
+                if screenshot_hash == stored_hashes or (media_hash and media_hash == stored_hashes):
+                    logger.info(f"Found matching legacy hash in {hash_key}")
+                    return False
+        
+        # If we get here, no matches were found - it's a new story
+        logger.info("No matching hashes found - this is a new story")
+        return True
 
-    def check_story(self):
-        """Check for new stories and send alerts."""
-        try:
-            # Check if session needs refresh
-            if self.is_session_expired():
-                print("Session expired, attempting refresh...")
-                if not self.refresh_session():
-                    print("Failed to refresh session. Stories might not be accessible.")
-                    # Try to use existing session anyway
-                    if not os.path.exists(self.state_file):
-                        print("No session file found. Stories will not be accessible.")
-                        return
-            
-            # Load users
-            users = self.load_users()
-            if not users:
-                print("No users to monitor. Please check users.json")
+    async def check_story(self, username: str) -> None:
+        """Check for new stories from a specific username."""
+        if not self.page or self.should_relogin():
+            if not await self.login_to_instagram():
                 return
-
-            # Initialize Playwright and browser
-            with sync_playwright() as p:
-                browser = p.chromium.launch(headless=True)
-                try:
-                    context = browser.new_context(storage_state=self.state_file)
-                    page = context.new_page()
-
-                    # Track unique usernames across all chat_ids
-                    checked_usernames = set()
-
-                    # Check each user's stories
-                    for chat_id, usernames in users.items():
-                        # Skip invalid chat IDs
-                        if not chat_id.isdigit() or len(chat_id) < 5:
-                            print(f"Skipping invalid chat ID: {chat_id}")
-                            continue
-
-                        for username in usernames:
-                            # Clean username and skip if empty or invalid
-                            username = username.strip().lstrip('@')
-                            if not username or username.startswith('<'):
-                                continue
-
-                            # Skip if we've already checked this username
-                            if username in checked_usernames:
-                                continue
-                            checked_usernames.add(username)
-
-                            try:
-                                print(f"\nChecking stories for {username}")
-                                page.goto(f'https://www.instagram.com/{username}/', wait_until='domcontentloaded')
-                                page.wait_for_timeout(4000)
-
-                                thumbnail_url = self.get_story_thumbnail_url(page)
-                                if thumbnail_url:
-                                    last_state = self.get_last_alert_state(username)
-                                    current_hash = hashlib.sha256(thumbnail_url.encode()).hexdigest()
-
-                                    print(f"Last check: {last_state['timestamp']}")
-                                    print(f"Last hash: {last_state['hash']}")
-                                    print(f"Current hash: {current_hash}")
-
-                                    if current_hash != last_state['hash']:
-                                        # Find all chat_ids that follow this user
-                                        alert_chat_ids = [cid for cid, unames in users.items() 
-                                                        if cid.isdigit() and len(cid) >= 5  # Valid chat IDs only
-                                                        and username in [u.strip().lstrip('@') for u in unames]]
-                                        
-                                        # Send alert to all relevant chat_ids that haven't been alerted yet
-                                        success = False
-                                        alerted_chats = last_state['alerted_chats'].copy()
-                                        
-                                        for alert_chat_id in alert_chat_ids:
-                                            if alert_chat_id not in alerted_chats:
-                                                if self.send_telegram_message(f"{username} just posted a story!", alert_chat_id):
-                                                    success = True
-                                                    alerted_chats.append(alert_chat_id)
-                                            
-                                        if success:
-                                            print(f"New story for {username}. Alerts sent.")
-                                            self.set_last_alert_state(username, thumbnail_url, alerted_chats)
-                                    else:
-                                        print(f"No new story for {username}")
-                                else:
-                                    print(f"Could not find story thumbnail for {username}")
-                            except Exception as e:
-                                print(f"Error checking story for {username}: {e}")
-                finally:
-                    if browser:
-                        browser.close()
-        except Exception as e:
-            print(f"Error in check_story: {e}")
-
-    def run(self):
-        """Main loop."""
-        while True:
-            try:
-                self.check_story()
-                print(f"\nSleeping for {self.check_interval_minutes} minutes...")
-                time.sleep(self.check_interval_minutes * 60)
-            except KeyboardInterrupt:
-                print("\nShutting down...")
-                break
-            except Exception as e:
-                print(f"\nError in main loop: {e}")
-                time.sleep(5)  # wait 5 seconds before retrying
-
-    def save_story(self, username, story_url, story_type):
+        
         try:
-            # Create directory if it doesn't exist
-            story_dir = f"{self.alert_states_dir}/{username}_stories"
-            os.makedirs(story_dir, exist_ok=True)
+            # Navigate to Instagram profile
+            await self.page.goto(f"https://www.instagram.com/{username}/")
             
-            # Generate filename with timestamp
-            timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-            extension = ".mp4" if story_type == "video" else ".jpg"
-            filename = f"{story_dir}/{timestamp}{extension}"
+            # Wait for page to load
+            await self.page.wait_for_selector('header', timeout=10000)
             
-            # Download and save the story
-            response = requests.get(story_url)
-            if response.status_code == 200:
-                with open(filename, 'wb') as f:
-                    f.write(response.content)
-                return True
-            return False
-        except Exception as e:
-            print(f"Error saving story: {e}")
-            return False
+            # Check for story ring (the colorful circle around profile picture)
+            story_ring = await self.page.query_selector('div[role="button"] canvas')
+            if not story_ring:
+                logger.info(f"No active stories found for @{username}")
+                return
+            
+            try:
+                # Click story ring and wait for story viewer
+                await story_ring.click()
+                await self.page.wait_for_selector('div[role="dialog"]', timeout=5000)
+            except TimeoutError:
+                logger.info(f"No story viewer opened for @{username}, they might not have active stories")
+                return
+            except Exception as e:
+                logger.error(f"Error opening story for @{username}: {e}")
+                return
+            
+            # Get all stories in the current batch
+            stories = []
+            story_count = 0
+            max_stories = 100  # Safety limit
+            
+            while story_count < max_stories:
+                try:
+                    # Wait for story content to load
+                    story_selector = 'div[role="dialog"]'
+                    try:
+                        await self.page.wait_for_selector(story_selector, timeout=5000)
+                    except TimeoutError:
+                        logger.info(f"No more stories found for @{username} after {story_count} stories")
+                        break
+                    
+                    # Get story container
+                    story_element = await self.page.query_selector(story_selector)
+                    if not story_element:
+                        break
 
-    async def check_stories(self):
+                    # Process story content
+                    story_content = await self.get_story_content(story_element)
+                    if not story_content:
+                        logger.warning(f"Could not process content for story {story_count + 1}")
+                        continue
+                    
+                    stories.append(story_content)
+                    story_count += 1
+                    
+                    # Try to click next story
+                    next_button = await self.page.query_selector('button[aria-label="Next"]')
+                    if not next_button:
+                        logger.info(f"Reached last story for @{username} after {story_count} stories")
+                        break
+                    
+                    await next_button.click()
+                    await asyncio.sleep(1)  # Wait for next story to load
+                    
+                except TimeoutError:
+                    logger.info(f"Timeout while processing story {story_count + 1} for @{username}")
+                    break
+                except Exception as e:
+                    logger.error(f"Error processing story {story_count + 1} for @{username}: {e}")
+                    break
+            
+            if not stories:
+                logger.info(f"No story content found for @{username}")
+                return
+            
+            logger.info(f"Found {len(stories)} stories for @{username}")
+            
+            # Get current alert state
+            state = self.get_last_alert_state(username)
+            
+            # Check each tracking user
+            for chat_id, usernames in self.tracked_users.items():
+                if username in usernames:
+                    # Check if any stories are new
+                    new_stories = []
+                    for story in stories:
+                        if self.compare_story_content(story, state.get('hashes', {})):
+                            new_stories.append(story)
+                            # Generate hash key and store both hashes
+                            hash_key = self.generate_hash_key(username, chat_id, story)
+                            state['hashes'][hash_key] = f"{story['screenshot_hash']}:{story.get('media_hash', '')}"
+                            logger.info(f"Stored new story with key: {hash_key}")
+                    
+                    if new_stories:
+                        # Send alert for new stories
+                        message = f"🎭 <b>New stories from @{username}!</b>\n\n"
+                        for i, story in enumerate(new_stories, 1):
+                            message += f"Story {i}/{len(new_stories)}: {'🎥' if story['type'] == 'video' else '🖼️'}\n"
+                        
+                        if self.send_telegram_message(chat_id, message):
+                            # Update state with last check time
+                            state['last_check'] = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+                            self.set_last_alert_state(username, state)
+                            logger.info(f"Sent alert for {len(new_stories)} new stories from @{username} to chat {chat_id}")
+            
+        except Exception as e:
+            logger.error(f"Error checking story for @{username}: {e}")
+            await self.cleanup_browser()
+            
+        finally:
+            # Try to close the story viewer if it's open
+            try:
+                close_button = await self.page.query_selector('button[aria-label="Close"]')
+                if close_button:
+                    await close_button.click()
+            except Exception as e:
+                logger.debug(f"Error closing story viewer: {e}")
+
+    async def run(self) -> None:
+        """Main monitoring loop."""
         while True:
             try:
-                with open(self.users_file, "r") as f:
-                    users = json.load(f)
+                # Reload tracked users
+                self.tracked_users = self.load_users()
                 
-                for chat_id, tracked_users in users.items():
-                    for username in tracked_users:
-                        try:
-                            # ... existing story checking code ...
-                            
-                            if new_stories:
-                                for story in new_stories:
-                                    # Save the story
-                                    if self.save_story(username, story['url'], story['type']):
-                                        # Send notification with download option
-                                        message = f"New story from @{username} 🤡\nUse /download {username} to save it to your collection of despair"
-                                        self.send_telegram_message(message, chat_id)
-                        
-                        except Exception as e:
-                            print(f"Error checking stories for {username}: {e}")
+                if not self.tracked_users:
+                    logger.info("No users to track, sleeping...")
+                    await asyncio.sleep(60)
+                    continue
                 
-                await asyncio.sleep(60)  # Check every minute
+                # Check each tracked username
+                for chat_id, usernames in self.tracked_users.items():
+                    for username in usernames:
+                        await self.check_story(username)
+                        await asyncio.sleep(2)  # Small delay between users
+                
+                # Sleep before next check
+                await asyncio.sleep(self.check_interval_minutes * 60)
+                
             except Exception as e:
-                print(f"Error in main loop: {e}")
-                await asyncio.sleep(60)
+                logger.error(f"Error in monitoring loop: {e}")
+                await asyncio.sleep(60)  # Wait a minute before retrying
+
+    async def __aenter__(self):
+        """Async context manager entry."""
+        return self
+
+    async def __aexit__(self, exc_type, exc_val, exc_tb):
+        """Async context manager exit."""
+        await self.cleanup_browser()
 
 if __name__ == "__main__":
-    try:
-        monitor = InstagramMonitor()
-        monitor.run()
-    except KeyboardInterrupt:
-        print("\nShutting down...")
-    except Exception as e:
-        print(f"\nFatal error: {e}") 
+    async def main():
+        try:
+            async with InstagramMonitor() as monitor:
+                await monitor.run()
+        except KeyboardInterrupt:
+            print("\nShutting down...")
+        except Exception as e:
+            print(f"\nFatal error: {e}")
+
+    asyncio.run(main()) 

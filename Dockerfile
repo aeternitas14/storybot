@@ -7,7 +7,7 @@ RUN apt-get update && apt-get install -y \
     wget \
     gnupg \
     && wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add - \
-    && echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list \
+    && sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list' \
     && apt-get update \
     && apt-get install -y \
     google-chrome-stable \
@@ -37,6 +37,7 @@ RUN apt-get update && apt-get install -y \
 # Copy requirements and install Python dependencies
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
+RUN pip install gunicorn
 
 # Install Playwright and its dependencies
 RUN pip install playwright && \
@@ -46,17 +47,20 @@ RUN pip install playwright && \
 # Copy application files
 COPY . .
 
-# Create directory for alert states
-RUN mkdir -p alert_states
+# Create necessary directories
+RUN mkdir -p alert_states && \
+    mkdir -p /app/__pycache__ && \
+    chmod -R 777 /app/__pycache__
 
 # Set environment variables
 ENV PYTHONUNBUFFERED=1
-ENV DISPLAY=:99
-ENV PORT=8080
+ENV FLASK_APP=run_bot.py
+ENV PORT=443
+ENV PYTHONPATH=/app
 
-# Expose port 8080 for Fly.io
-EXPOSE 8080
+# Expose port 443 for Fly.io
+EXPOSE 443
 
-# Run both the webhook server and story checker
-CMD python3 run_bot.py & python3 instagram_monitor.py
+# Run the application
+CMD ["gunicorn", "--bind", "0.0.0.0:443", "--timeout", "120", "--keep-alive", "5", "run_bot:app"]
 

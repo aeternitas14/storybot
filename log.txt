@@ -38,4 +38,89 @@ Checking stories for danfruhman[2025-05-05 03:08:50] Last check: 2025-05-05 02:0
 Checking stories for kimkardashian[2025-05-05 03:08:55] Last check: 2025-05-05 02:58:36[2025-05-05 03:08:55] Last hash: 73b25a3ba805f348aada83ca5bb5d929eefe7eab73732e25057cf4ce0eedbbe4[2025-05-05 03:08:55] Current hash: ea1ba73fb75f071f186e66615127679121fcb5baeedde7f2f731a257b253cd2c[2025-05-05 03:08:55] 
 Checking stories for kyliejenner[2025-05-05 03:09:00] Last check: 2025-05-05 02:58:42[2025-05-05 03:09:00] Last hash: 28b6662389094ec8cbb3d7a8d40a33c7beb013ce8c384f053b692683551aed60[2025-05-05 03:09:00] Current hash: fa84e6adffd1e7b83e2df7cc8947105336a2360bee0c589bd88c9e49566c9a71[2025-05-05 03:09:00] 
 Checking stories for l4di_da[2025-05-05 03:09:05] Last check: 2025-05-05 02:14:45[2025-05-05 03:09:05] Last hash: 72eb5a9ad531c6c9c9183b81d5477ae45c959284f1ddadd26691a036ae2e4182[2025-05-05 03:09:05] Current hash: e3fd92dd6756535f2b0d0790600cb703bd33983b2dfb0c1d60144fab43f56dbd[2025-05-05 03:09:05] 
-Sleeping for 5 minutes...
+Sleeping for 5 minutes...[2025-05-05 12:11:46] 
+>>> Instagram Monitor started...[2025-05-05 12:11:46] Error checking session status: Invalid isoformat string: ''
+[2025-05-05 12:11:46] Session expired, attempting refresh...[2025-05-05 12:11:46] [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:8080
+ * Running on http://192.168.0.186:8080
+[2025-05-05 12:11:46] [33mPress CTRL+C to quit[0m
+[2025-05-05 12:11:49] Error during session refresh: 'BrowserContext' object has no attribute 'user_agent'
+[2025-05-05 12:11:49] Failed to refresh session. Stories might not be accessible.[2025-05-05 12:11:49] Loaded 2 users from users.json[2025-05-05 12:11:49] 
+Checking stories for pearlygatesbaby[2025-05-05 12:11:54] No story thumbnail found on page[2025-05-05 12:11:54] Could not find story thumbnail for pearlygatesbaby[2025-05-05 12:11:54] 
+Checking stories for danfruhman[2025-05-05 12:11:58] Error checking story for danfruhman: 'str' object has no attribute 'get'[2025-05-05 12:11:58] 
+Checking stories for kimkardashian[2025-05-05 12:12:03] Error checking story for kimkardashian: 'str' object has no attribute 'get'[2025-05-05 12:12:03] 
+Checking stories for kyliejenner[2025-05-05 12:12:07] Error checking story for kyliejenner: 'str' object has no attribute 'get'[2025-05-05 12:12:07] 
+Checking stories for l4di_da[2025-05-05 12:12:11] No story thumbnail found on page[2025-05-05 12:12:11] Could not find story thumbnail for l4di_da[2025-05-05 12:12:11] 
+Sleeping for 5 minutes...[2025-05-05 12:14:21] 
+>>> Instagram Monitor started...[2025-05-05 12:14:21] Address already in use[2025-05-05 12:14:21] Port 8080 is in use by another program. Either identify and stop that program, or start the server with a different port.[2025-05-05 12:16:05] 
+>>> Instagram Monitor started...[2025-05-05 12:16:05] Address already in use[2025-05-05 12:16:05] Port 8080 is in use by another program. Either identify and stop that program, or start the server with a different port.[2025-05-05 12:16:05] Error checking session status: Expecting value: line 1 column 1 (char 0)
+[2025-05-05 12:16:05] Session expired, attempting refresh...[2025-05-05 12:17:11] Error checking session status: Expecting value: line 1 column 1 (char 0)
+[2025-05-05 12:17:11] Session expired, attempting refresh...[2025-05-05 12:17:14] Error during session refresh: 'BrowserContext' object has no attribute 'user_agent'
+[2025-05-05 12:17:14] Failed to refresh session. Stories might not be accessible.[2025-05-05 12:17:14] Loaded 2 users from users.json[2025-05-05 12:17:14] 
+Checking stories for pearlygatesbaby[2025-05-05 12:17:18] No story thumbnail found on page[2025-05-05 12:17:18] Could not find story thumbnail for pearlygatesbaby[2025-05-05 12:17:18] 
+Checking stories for danfruhman[2025-05-05 12:17:23] Error checking story for danfruhman: 'str' object has no attribute 'get'[2025-05-05 12:17:23] 
+Checking stories for kimkardashian[2025-05-05 12:17:27] Error checking story for kimkardashian: 'str' object has no attribute 'get'[2025-05-05 12:17:27] 
+Checking stories for kyliejenner[2025-05-05 12:17:31] Error checking story for kyliejenner: 'str' object has no attribute 'get'[2025-05-05 12:17:31] 
+Checking stories for l4di_da[2025-05-05 12:17:36] No story thumbnail found on page[2025-05-05 12:17:36] Could not find story thumbnail for l4di_da[2025-05-05 12:17:36] 
+Sleeping for 5 minutes...[2025-05-05 12:22:36] Error checking session status: Expecting value: line 1 column 1 (char 0)
+[2025-05-05 12:22:36] Session expired, attempting refresh...[2025-05-05 12:22:38] Error during session refresh: 'BrowserContext' object has no attribute 'user_agent'
+[2025-05-05 12:22:38] Failed to refresh session. Stories might not be accessible.[2025-05-05 12:22:38] Loaded 2 users from users.json[2025-05-05 12:22:38] 
+Checking stories for pearlygatesbaby[2025-05-05 12:22:43] No story thumbnail found on page[2025-05-05 12:22:43] Could not find story thumbnail for pearlygatesbaby[2025-05-05 12:22:43] 
+Checking stories for danfruhman[2025-05-05 12:22:47] Error checking story for danfruhman: 'str' object has no attribute 'get'[2025-05-05 12:22:47] 
+Checking stories for kimkardashian[2025-05-05 12:22:52] Error checking story for kimkardashian: 'str' object has no attribute 'get'[2025-05-05 12:22:52] 
+Checking stories for kyliejenner[2025-05-05 12:22:56] Error checking story for kyliejenner: 'str' object has no attribute 'get'[2025-05-05 12:22:56] 
+Checking stories for l4di_da[2025-05-05 12:23:00] No story thumbnail found on page[2025-05-05 12:23:00] Could not find story thumbnail for l4di_da[2025-05-05 12:23:00] 
+Sleeping for 5 minutes...[2025-05-05 12:49:50] 
+>>> Instagram Monitor started...[2025-05-05 12:49:50] 
+Error in monitor loop: InstagramMonitor.check_story() missing 1 required positional argument: 'username'[2025-05-05 12:49:50] [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:443
+ * Running on http://192.168.0.186:443
+[2025-05-05 12:49:50] [33mPress CTRL+C to quit[0m
+[2025-05-05 12:49:55] 
+Error in monitor loop: InstagramMonitor.check_story() missing 1 required positional argument: 'username'[2025-05-05 12:50:00] 
+Error in monitor loop: InstagramMonitor.check_story() missing 1 required positional argument: 'username'[2025-05-05 12:50:05] 
+Error in monitor loop: InstagramMonitor.check_story() missing 1 required positional argument: 'username'[2025-05-05 12:50:10] 
+Error in monitor loop: InstagramMonitor.check_story() missing 1 required positional argument: 'username'[2025-05-05 12:50:15] 
+Error in monitor loop: InstagramMonitor.check_story() missing 1 required positional argument: 'username'[2025-05-05 12:50:18] 
+>>> Instagram Monitor started...[2025-05-05 12:50:18] 
+Error in monitor loop: InstagramMonitor.check_story() missing 1 required positional argument: 'username'[2025-05-05 12:50:18]  * Debug mode: off
+[2025-05-05 12:50:18] Address already in use[2025-05-05 12:50:18] Port 443 is in use by another program. Either identify and stop that program, or start the server with a different port.[2025-05-05 12:50:20] 
+Error in monitor loop: InstagramMonitor.check_story() missing 1 required positional argument: 'username'[2025-05-05 12:50:25] 
+Error in monitor loop: InstagramMonitor.check_story() missing 1 required positional argument: 'username'[2025-05-05 12:50:30] 
+Error in monitor loop: InstagramMonitor.check_story() missing 1 required positional argument: 'username'[2025-05-05 12:50:35] 
+Error in monitor loop: InstagramMonitor.check_story() missing 1 required positional argument: 'username'[2025-05-05 12:50:40] 
+Error in monitor loop: InstagramMonitor.check_story() missing 1 required positional argument: 'username'[2025-05-05 12:50:45] 
+Error in monitor loop: InstagramMonitor.check_story() missing 1 required positional argument: 'username'[2025-05-05 12:50:50] 
+Error in monitor loop: InstagramMonitor.check_story() missing 1 required positional argument: 'username'[2025-05-05 12:50:55] 
+Error in monitor loop: InstagramMonitor.check_story() missing 1 required positional argument: 'username'[2025-05-05 12:51:09] 
+>>> Instagram Monitor started...[2025-05-05 12:51:09] 
+Error in monitor loop: InstagramMonitor.check_story() missing 1 required positional argument: 'username'[2025-05-05 12:51:09]  * Debug mode: off
+[2025-05-05 12:51:09] [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:443
+ * Running on http://192.168.0.186:443
+[2025-05-05 12:51:09] [33mPress CTRL+C to quit[0m
+[2025-05-05 12:51:14] 
+Error in monitor loop: InstagramMonitor.check_story() missing 1 required positional argument: 'username'[2025-05-05 12:51:17] 127.0.0.1 - - [05/May/2025 12:51:17] "GET /health HTTP/1.1" 200 -
+[2025-05-05 12:51:19] 
+Error in monitor loop: InstagramMonitor.check_story() missing 1 required positional argument: 'username'[2025-05-05 12:51:24] 
+Error in monitor loop: InstagramMonitor.check_story() missing 1 required positional argument: 'username'[2025-05-05 12:51:29] 
+Error in monitor loop: InstagramMonitor.check_story() missing 1 required positional argument: 'username'[2025-05-05 12:51:34] 
+Error in monitor loop: InstagramMonitor.check_story() missing 1 required positional argument: 'username'[2025-05-05 12:51:39] 
+Error in monitor loop: InstagramMonitor.check_story() missing 1 required positional argument: 'username'[2025-05-05 12:51:44] 
+Error in monitor loop: InstagramMonitor.check_story() missing 1 required positional argument: 'username'[2025-05-05 12:51:49] 
+Error in monitor loop: InstagramMonitor.check_story() missing 1 required positional argument: 'username'[2025-05-05 12:51:54] 
+Error in monitor loop: InstagramMonitor.check_story() missing 1 required positional argument: 'username'[2025-05-05 12:51:59] 
+Error in monitor loop: InstagramMonitor.check_story() missing 1 required positional argument: 'username'[2025-05-05 12:52:04] 
+Error in monitor loop: InstagramMonitor.check_story() missing 1 required positional argument: 'username'[2025-05-05 12:52:09] 
+Error in monitor loop: InstagramMonitor.check_story() missing 1 required positional argument: 'username'[2025-05-05 12:52:14] 
+Error in monitor loop: InstagramMonitor.check_story() missing 1 required positional argument: 'username'[2025-05-05 12:52:19] 
+Error in monitor loop: InstagramMonitor.check_story() missing 1 required positional argument: 'username'[2025-05-05 12:52:24] 
+Error in monitor loop: InstagramMonitor.check_story() missing 1 required positional argument: 'username'[2025-05-05 12:52:29] 
+Error in monitor loop: InstagramMonitor.check_story() missing 1 required positional argument: 'username'[2025-05-05 12:52:34] 
+Error in monitor loop: InstagramMonitor.check_story() missing 1 required positional argument: 'username'[2025-05-05 12:52:39] 
+Error in monitor loop: InstagramMonitor.check_story() missing 1 required positional argument: 'username'[2025-05-05 12:52:44] 
+Error in monitor loop: InstagramMonitor.check_story() missing 1 required positional argument: 'username'[2025-05-05 12:52:49] 
+Error in monitor loop: InstagramMonitor.check_story() missing 1 required positional argument: 'username'
