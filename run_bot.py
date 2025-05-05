@@ -12,40 +12,40 @@ BOT_TOKEN = os.getenv("BOT_TOKEN", "7569840561:AAHnbeez9FcYFM_IpwyxJ1AwaiqKA7r_j
 
 # Fun responses for different scenarios
 STALKER_COMPLIMENTS = [
-    "Wow, you're really committed to this whole stalking thing, aren't you? 🕵️‍♂️",
-    "Another one? You're really building your collection of victims, huh? 📸",
-    "Damn, you're really thirsty for that content, aren't you? 🥤",
-    "Adding to your creep list, I see. No judgment here! 😏",
-    "Another poor soul to stalk? You're really going all in! 🎭"
+    "Look who's back in the circus of obsession 🤡",
+    "Another victim added to your freak show collection 🤡",
+    "Your parents must be so proud of your stalking skills 🤡",
+    "Congratulations, you've reached a new level of pathetic 🤡",
+    "Your therapist is gonna love hearing about this one 🤡"
 ]
 
 STALKER_INSULTS = [
-    "Bruh, you're already stalking them. Get a life! 🤡",
-    "Seriously? You're already creeping on them. Touch grass! 🌱",
-    "You're really desperate, aren't you? They're already on your list! 🙄",
-    "Get some help, you're already tracking them! 🏥",
-    "Bruh, you're already obsessed with them. Maybe try therapy? 🛋️"
+    "You're already tracking them, you absolute circus act 🤡",
+    "Wow, your memory is as good as your life choices 🤡",
+    "Did your last two brain cells forget you're already stalking them? 🤡",
+    "Peak clown behavior - trying to track someone twice 🤡",
+    "Your desperation is showing, and it's not a good look 🤡"
 ]
 
 STALKER_LEVELS = [
-    "Baby Stalker 👶",
-    "Novice Creeper 🕵️‍♂️",
-    "Intermediate Lurker 🎭",
-    "Advanced Stalker 🎯",
-    "Professional Stalker 🏆",
-    "Legendary Stalker 👑",
-    "Stalking God 🦹‍♂️"
+    "Circus Trainee 🤡",
+    "Professional Disappointment 🤡",
+    "Master of Mediocrity 🤡",
+    "Distinguished Degenerate 🤡",
+    "Supreme Waste of Space 🤡",
+    "God of Getting No Bitches 🤡",
+    "CEO of Down Bad Industries 🤡"
 ]
 
 STALKER_TIPS = [
-    "Pro tip: Check their stories right after they post for maximum creepiness! 🕒",
-    "Did you know? Most people post stories between 6-9 PM. Just saying... 👀",
-    "Want to be extra creepy? Track their close friends too! 🎭",
-    "Pro stalker move: Create a separate account just for stalking! 🎪",
-    "Remember: The early stalker gets the story! Set up notifications! 🔔",
-    "Want to level up? Start tracking their friends too! It's called networking! 🤝",
-    "Pro tip: Save their stories to watch later. You know, for research! 📚",
-    "Did you know? You can see who viewed their stories if you're quick enough! 🏃‍♂️"
+    "Pro tip: Your crush still won't notice you exist 🤡",
+    "Fun fact: This won't fill the void in your life 🤡",
+    "Expert advice: Your parents' disappointment is permanent 🤡",
+    "Life hack: Try having a personality instead 🤡",
+    "Secret technique: Maybe try therapy instead of stalking 🤡",
+    "Advanced strategy: Touch grass, it's free 🤡",
+    "Insider tip: They're not playing hard to get, you're just creepy 🤡",
+    "Premium advice: Your ex isn't coming back, chief 🤡"
 ]
 
 def send_typing(chat_id):
@@ -107,21 +107,22 @@ def webhook():
 
         # Check if this is a new user
         if is_new_user(chat_id):
-            welcome_message = """🎪 Welcome to ClowTracker, where dreams are made of! 🎭
+            welcome_message = """Welcome to the Circus of Sadness 🤡
 
-Here's what you can do with me:
-- /track <username> - Start stalking someone (e.g., /track instagram) 🕵️‍♂️
-- /untrack <username> - Stop being a creep (e.g., /untrack instagram) 🙈
-- /list - See all the poor souls you're tracking 📝
-- /stats - See how much of a stalker you are 📊
-- /level - Check your stalking level 🏆
-- /roast - Get roasted for your stalking habits 🔥
-- /tips - Get pro stalking tips 🎯
-- /achievements - See your stalking achievements 🏅
-- /help - Show this menu again 💡
+I'm your ringmaster in this pathetic show. Here's your toolkit for being a professional disappointment:
 
-Example: /track instagram 
-Happy stalking! 🍆 💦"""
+/track <username> - Add another person who won't notice you exist
+/untrack <username> - Pretend you're finally moving on
+/list - See all the people living rent-free in your head
+/stats - Quantify your life choices
+/level - See how far you've fallen
+/roast - Get reminded of your life decisions
+/tips - Learn from fellow circus members
+/achievements - Celebrate your downward spiral
+/help - Too dumb to remember commands? I got you
+
+Example: /track instagram
+Now get out there and make your therapist earn their money 🤡"""
             send_message(chat_id, welcome_message)
 
         if text.startswith("/track"):
@@ -130,33 +131,32 @@ Happy stalking! 🍆 💦"""
                 username = parts[1].lstrip("@")
                 if add_user(chat_id, username):
                     compliment = random.choice(STALKER_COMPLIMENTS)
-                    send_message(chat_id, f"{compliment}\nNow tracking @{username} 🍆 💦")
+                    send_message(chat_id, f"{compliment}\nNow watching @{username} like the clown you are 🤡")
                 else:
                     insult = random.choice(STALKER_INSULTS)
                     send_message(chat_id, insult)
             else:
-                send_message(chat_id, "Bruh, learn to use commands properly! Usage: /track <instagram_username> 🤦‍♂️")
+                send_message(chat_id, "Even a circus needs standards. Usage: /track <username> 🤡")
         
         elif text.startswith("/untrack"):
             parts = text.split()
             if len(parts) == 2:
                 username = parts[1].lstrip("@")
                 if remove_user(chat_id, username):
-                    send_message(chat_id, f"Fine, I'll stop tracking @{username}. No more creeping 👋\nBut we both know you'll be back... 😏")
+                    send_message(chat_id, f"Congratulations on pretending to move on from @{username} 🤡\nWe both know you'll be back when you're drunk at 3am")
                 else:
-                    send_message(chat_id, f"Bruh, you're not even tracking @{username}. Are you hallucinating? 🤔")
+                    send_message(chat_id, f"You're not even tracking @{username}, you absolute clown 🤡")
             else:
-                send_message(chat_id, "Bruh, learn to use commands properly! Usage: /untrack <instagram_username> 🤦‍♂️")
+                send_message(chat_id, "Reading comprehension not your strong suit? Usage: /untrack <username> 🤡")
         
         elif text == "/list":
-            send_typing(chat_id)  # Send typing indicator for list command
             tracked_users = get_tracked_users(chat_id)
             if tracked_users:
-                user_list = "\n".join([f"- @{user} 👀" for user in tracked_users])
+                user_list = "\n".join([f"- @{user} (living rent-free in your head) 🤡" for user in tracked_users])
                 level = get_stalker_level(len(tracked_users))
-                send_message(chat_id, f"🎭 Your stalking list (you really need a hobby):\n{user_list}\n\nTotal victims: {len(tracked_users)} 🎯\nCurrent level: {level}")
+                send_message(chat_id, f"Your personal circus of obsession:\n{user_list}\n\nVictim count: {len(tracked_users)} 🤡\nCurrent title: {level}")
             else:
-                send_message(chat_id, "You're not tracking anyone yet! Use /track to start being creepy 😈\nDon't worry, we all start somewhere! 🎪")
+                send_message(chat_id, "Wow, no one to stalk? That's a new level of lonely 🤡\nUse /track to join the circus")
 
         elif text == "/stats":
             tracked_users = get_tracked_users(chat_id)
@@ -164,69 +164,71 @@ Happy stalking! 🍆 💦"""
             level = get_stalker_level(count)
             achievements = get_stalker_achievements(count)
             if count == 0:
-                send_message(chat_id, f"Wow, you're not even trying! 0 people tracked. Pathetic. 😒\nCurrent level: {level}")
+                send_message(chat_id, f"Zero people tracked. Even by circus standards, that's pathetic 🤡\nCurrent title: {level}")
             elif count < 3:
-                send_message(chat_id, f"Only {count} people? You call that stalking? Amateur hour! 😤\nCurrent level: {level}")
+                send_message(chat_id, f"Only {count}? My grandma stalks more people than you 🤡\nCurrent title: {level}")
             elif count < 10:
-                send_message(chat_id, f"{count} victims? Not bad, but you could do better! Keep going! 🎯\nCurrent level: {level}")
+                send_message(chat_id, f"{count} victims? Mediocrity at its finest 🤡\nCurrent title: {level}")
             else:
-                send_message(chat_id, f"Damn, {count} people? You're really committed to this whole stalking thing! 🏆\nCurrent level: {level}\nMaybe consider therapy? 🛋️")
+                send_message(chat_id, f"Tracking {count} people? Your parents must be so proud 🤡\nCurrent title: {level}")
             
             if achievements:
-                send_message(chat_id, f"🏅 Your Achievements:\n" + "\n".join(achievements))
+                send_message(chat_id, f"🤡 Your Circus Achievements:\n" + "\n".join(achievements))
 
         elif text == "/level":
             tracked_users = get_tracked_users(chat_id)
             count = len(tracked_users)
             level = get_stalker_level(count)
             next_level = STALKER_LEVELS[min(STALKER_LEVELS.index(level) + 1, len(STALKER_LEVELS) - 1)]
-            send_message(chat_id, f"🎭 Your Stalking Level: {level}\n\nCurrent victims: {count} 🎯\n\nNext level: {next_level}\nKeep stalking to level up! 🏆")
+            send_message(chat_id, f"Current Role: {level}\n\nVictim Count: {count} 🤡\n\nNext Title: {next_level}\nKeep digging that hole deeper! 🤡")
 
         elif text == "/roast":
             tracked_users = get_tracked_users(chat_id)
             count = len(tracked_users)
             roasts = [
-                f"Bruh, you're tracking {count} people? Get a life! 🌱",
-                f"Imagine having {count} people's stories to watch. Touch grass! 🌿",
-                f"{count} victims? Your phone must be running out of storage! 📱",
-                f"With {count} people to stalk, when do you even sleep? 😴",
-                f"Your mom would be so proud of your {count} victims! 👩‍👦",
-                f"At this rate, you'll need a second phone for all {count} of your victims! 📱",
-                f"Bro, {count} people? You're basically a professional stalker! 🏆",
-                f"Your therapist would have a field day with your {count} victims! 🛋️"
+                f"Tracking {count} people? Your therapist is getting rich 🤡",
+                f"{count} victims and still no one wants you 🤡",
+                f"With {count} people to stalk, who needs a personality? 🤡",
+                f"Imagine spending time on {count} people who don't know you exist 🤡",
+                f"Your parents' disappointment grows with each of your {count} victims 🤡",
+                f"{count} people to stalk? Get a hobby that doesn't require restraining orders 🤡",
+                f"Congratulations on being {count} times more pathetic than average 🤡",
+                f"Is stalking {count} people filling that void in your life? (Spoiler: No) 🤡"
             ]
             send_message(chat_id, random.choice(roasts))
 
         elif text == "/tips":
             tip = random.choice(STALKER_TIPS)
-            send_message(chat_id, f"🎯 Pro Stalking Tip:\n{tip}")
+            send_message(chat_id, f"Circus Pro Tip:\n{tip}")
 
         elif text == "/achievements":
             tracked_users = get_tracked_users(chat_id)
             count = len(tracked_users)
             achievements = get_stalker_achievements(count)
             if achievements:
-                send_message(chat_id, f"🏅 Your Stalking Achievements:\n" + "\n".join(achievements))
+                send_message(chat_id, f"🤡 Your Circus Achievements:\n" + "\n".join(achievements))
             else:
-                send_message(chat_id, "No achievements yet! Start stalking to earn some! 🎯")
+                send_message(chat_id, "No achievements? You're failing at failing. Impressive. 🤡")
 
         elif text == "/start":
-            send_message(chat_id, "Welcome back to ClowTracker! 🎪\nReady to continue your stalking journey? Use /help to see what I can do for you 🎭")
+            send_message(chat_id, "Back for more emotional damage? Use /help to see all the ways you can disappoint yourself 🤡")
 
         elif text == "/help":
-            help_message = """🎪 ClowTracker Commands:
-/track <username> - Start stalking someone 🕵️‍♂️
-/untrack <username> - Stop being a creep 🙈
-/list - See your stalking list 📝
-/stats - See how much of a stalker you are 📊
-/level - Check your stalking level 🏆
-/roast - Get roasted for your stalking habits 🔥
-/tips - Get pro stalking tips 🎯
-/achievements - See your stalking achievements 🏅
-/help - Show this menu 💡
+            help_message = """Welcome to the Circus 🤡
+
+Your toolkit of self-destruction:
+/track <username> - New victim unlocked
+/untrack <username> - Pretend to move on
+/list - Your wall of shame
+/stats - Quantify your downward spiral
+/level - Check your circus rank
+/roast - Get reminded of your life choices
+/tips - Learn from fellow clowns
+/achievements - Celebrate hitting rock bottom
+/help - Too dumb to remember? I got you
 
 Example: /track instagram
-Happy stalking! 🍆 💦"""
+Now go make your therapist proud 🤡"""
             send_message(chat_id, help_message)
 
     except Exception as e:
