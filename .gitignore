@@ -1,22 +1,33 @@
 # Python
 __pycache__/
-*.pyc
-*.pyo
-*.pyd
+*.py[cod]
+*$py.class
+*.so
 .Python
-venv/
 env/
-.env
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+*.egg-info/
+.installed.cfg
+*.egg
 
 # Logs
 *.log
-nohup.out
+log.txt
+webhook.log
+monitor.log
 
-# State files
-state.json
-alert_states/
-users.json
-subscribers.json
+# Environment variables
+.env
 
 # IDE
 .idea/
@@ -27,5 +38,11 @@ subscribers.json
 # OS
 .DS_Store
 Thumbs.db
+
+# State files
+state.json
+alert_states/
+users.json
+subscribers.json
 
 

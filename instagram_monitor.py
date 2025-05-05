@@ -165,7 +165,17 @@ class InstagramMonitor:
 
                     # Check each user's stories
                     for chat_id, usernames in users.items():
+                        # Skip invalid chat IDs
+                        if not chat_id.isdigit() or len(chat_id) < 5:
+                            print(f"Skipping invalid chat ID: {chat_id}")
+                            continue
+
                         for username in usernames:
+                            # Clean username and skip if empty or invalid
+                            username = username.strip().lstrip('@')
+                            if not username or username.startswith('<'):
+                                continue
+
                             # Skip if we've already checked this username
                             if username in checked_usernames:
                                 continue
@@ -187,7 +197,9 @@ class InstagramMonitor:
 
                                     if current_hash != last_state['hash']:
                                         # Find all chat_ids that follow this user
-                                        alert_chat_ids = [cid for cid, unames in users.items() if username in unames]
+                                        alert_chat_ids = [cid for cid, unames in users.items() 
+                                                        if cid.isdigit() and len(cid) >= 5  # Valid chat IDs only
+                                                        and username in [u.strip().lstrip('@') for u in unames]]
                                         
                                         # Send alert to all relevant chat_ids that haven't been alerted yet
                                         success = False

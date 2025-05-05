@@ -3,11 +3,31 @@
 # See https://fly.io/docs/reference/configuration/ for information about how to use this file.
 #
 
-app = 'storybot-fragrant-paper-6245'
-primary_region = 'sjc'
+app = "clowtracker"
+primary_region = "lax"
+
+[build]
+  dockerfile = "Dockerfile"
 
 [env]
-  PLAYWRIGHT_BROWSERS_PATH = "/ms-playwright"
+  PORT = "8080"
+
+[http_service]
+  internal_port = 8080
+  force_https = true
+  auto_stop_machines = false
+  auto_start_machines = true
+  min_machines_running = 1
+  processes = ["app"]
+
+[[http_service.ports]]
+  port = 80
+  handlers = ["http"]
+  force_https = true
+
+[[http_service.ports]]
+  port = 443
+  handlers = ["tls", "http"]
 
 [processes]
   app = "python instagram_monitor.py"
