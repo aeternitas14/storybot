@@ -1,11 +1,16 @@
 import os
 import json
 import logging
-from typing import Dict, List, Optional
+import re
+from typing import Dict, List, Optional, Any
 from flask import Flask, request
-from telegram import Update, Bot
-from telegram.ext import Dispatcher, CommandHandler, MessageHandler, Filters
+from telegram import Update
+from telegram.ext import Application, CommandHandler, ContextTypes
+from flask_limiter import Limiter
+from flask_limiter.util import get_remote_address
+from flask_talisman import Talisman
 from instagram_monitor import InstagramMonitor
+import asyncio
 
 # Setup logging
 logging.basicConfig(
@@ -17,10 +22,22 @@ logger = logging.getLogger(__name__)
 # Initialize Flask app
 app = Flask(__name__)
 
-# Initialize bot and dispatcher
-bot_token = os.getenv('BOT_TOKEN', '7569840561:AAHnbeez9FcYFM_IpwyxJ1AwaiqKA7r_jiA')
-bot = Bot(token=bot_token)
-dispatcher = Dispatcher(bot, None, use_context=True)
+# Add security headers
+Talisman(app, content_security_policy=None)
+
+# Initialize rate limiter
+limiter = Limiter(
+    app=app,
+    key_func=get_remote_address,
+    default_limits=["200 per day", "50 per hour"]
+)
+
+# Initialize bot and application
+bot_token = os.getenv('BOT_TOKEN')
+if not bot_token:
+    raise ValueError("BOT_TOKEN environment variable is required")
+
+application = Application.builder().token(bot_token).build()
 
 # Initialize Instagram monitor
 monitor = InstagramMonitor()
@@ -32,7 +49,7 @@ def load_users() -> Dict[str, List[str]]:
     try:
         with open("users.json", "r") as f:
             return json.load(f)
-    except Exception as e:
+    except (FileNotFoundError, json.JSONDecodeError, PermissionError) as e:
         logger.error(f"Error loading users: {e}")
         return {}
 
@@ -41,11 +58,22 @@ def save_users(users: Dict[str, List[str]]) -> None:
     try:
         with open("users.json", "w") as f:
             json.dump(users, f)
-    except Exception as e:
+    except (PermissionError, IOError) as e:
         logger.error(f"Error saving users: {e}")
+
+def validate_username(username: str) -> bool:
+    """Validate Instagram username format."""
+    if not username or not username.strip():
+        return False
+    username = username.strip().lower()
+    # Instagram usernames can only contain letters, numbers, periods, and underscores
+    return bool(re.match(r'^[a-zA-Z0-9._]+$', username))
 
 def add_user(chat_id: str, username: str) -> bool:
     """Add a user to the tracking list."""
+    if not validate_username(username):
+        return False
+        
     users = load_users()
     if str(chat_id) not in users:
         users[str(chat_id)] = []
@@ -57,6 +85,9 @@ def add_user(chat_id: str, username: str) -> bool:
 
 def remove_user(chat_id: str, username: str) -> bool:
     """Remove a user from the tracking list."""
+    if not validate_username(username):
+        return False
+        
     users = load_users()
     if str(chat_id) in users and username in users[str(chat_id)]:
         users[str(chat_id)].remove(username)
@@ -66,26 +97,45 @@ def remove_user(chat_id: str, username: str) -> bool:
         return True
     return False
 
-def start(update: Update, context: Any) -> None:
+async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     """Handle the /start command."""
     chat_id = update.effective_chat.id
-    context.bot.send_message(
+    await context.bot.send_message(
         chat_id=chat_id,
-        text="🎭 <b>Welcome to the Instagram Story Tracker!</b>\n\n"
-             "I'll notify you when your favorite Instagram accounts post new stories.\n\n"
-             "Commands:\n"
-             "/track <username> - Start tracking an account\n"
-             "/untrack <username> - Stop tracking an account\n"
-             "/list - See all accounts you're tracking\n\n"
-             "Example: /track instagram",
+        text="🎭 <b>Welcome to the Instagram Story Stalker Bot!</b>\n\n"
+             "Oh great, another person who can't resist the urge to know what others are doing 24/7. Don't worry, we won't judge... much. 😏\n\n"
+             "Here's what you can do with me (because apparently, you have nothing better to do):\n\n"
+             "🔍 <b>Track Stories:</b>\n"
+             "/track <username> - Start stalking someone's stories\n"
+             "Example: /track instagram\n\n"
+             "📥 <b>Download Stories:</b>\n"
+             "/download <username> - Download someone's current story\n"
+             "Example: /download kimkardashian\n\n"
+             "🚫 <b>Stop Stalking:</b>\n"
+             "/untrack <username> - Stop being creepy (or at least pretend to)\n\n"
+             "📋 <b>Your Stalking List:</b>\n"
+             "/list - See who you're currently obsessing over\n\n"
+             "📊 <b>Stalking Stats:</b>\n"
+             "/stats - Check how much of your life you've wasted here\n\n"
+             "🏆 <b>Stalking Level:</b>\n"
+             "/level - See how deep into the stalking rabbit hole you are\n\n"
+             "🔥 <b>Get Roasted:</b>\n"
+             "/roast - Get roasted for your questionable life choices\n\n"
+             "🎯 <b>Pro Tips:</b>\n"
+             "/tips - Learn how to be a better stalker (we're not proud of this)\n\n"
+             "🏅 <b>Stalking Achievements:</b>\n"
+             "/achievements - Collect badges for your dedication to being nosy\n\n"
+             "❓ <b>Need Help?</b>\n"
+             "/help - Get this message again (because you probably forgot already)\n\n"
+             "<i>Remember: Just because you can stalk someone's stories doesn't mean you should... but who are we to stop you? 🤷‍♂️</i>",
         parse_mode="HTML"
     )
 
-def track(update: Update, context: Any) -> None:
+async def track(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     """Handle the /track command."""
     chat_id = update.effective_chat.id
     if not context.args:
-        context.bot.send_message(
+        await context.bot.send_message(
             chat_id=chat_id,
             text="❌ Please provide an Instagram username to track.\n"
                  "Example: /track instagram",
@@ -94,25 +144,34 @@ def track(update: Update, context: Any) -> None:
         return
 
     username = context.args[0].lower()
+    if not validate_username(username):
+        await context.bot.send_message(
+            chat_id=chat_id,
+            text="❌ Invalid Instagram username format.\n"
+                 "Usernames can only contain letters, numbers, periods, and underscores.",
+            parse_mode="HTML"
+        )
+        return
+
     if add_user(chat_id, username):
-        context.bot.send_message(
+        await context.bot.send_message(
             chat_id=chat_id,
             text=f"✅ Now tracking @{username}!\n"
                  "You'll be notified when they post new stories. 🎭",
             parse_mode="HTML"
         )
     else:
-        context.bot.send_message(
+        await context.bot.send_message(
             chat_id=chat_id,
             text=f"ℹ️ You're already tracking @{username}!",
             parse_mode="HTML"
         )
 
-def untrack(update: Update, context: Any) -> None:
+async def untrack(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     """Handle the /untrack command."""
     chat_id = update.effective_chat.id
     if not context.args:
-        context.bot.send_message(
+        await context.bot.send_message(
             chat_id=chat_id,
             text="❌ Please provide an Instagram username to stop tracking.\n"
                  "Example: /untrack instagram",
@@ -121,27 +180,36 @@ def untrack(update: Update, context: Any) -> None:
         return
 
     username = context.args[0].lower()
+    if not validate_username(username):
+        await context.bot.send_message(
+            chat_id=chat_id,
+            text="❌ Invalid Instagram username format.\n"
+                 "Usernames can only contain letters, numbers, periods, and underscores.",
+            parse_mode="HTML"
+        )
+        return
+
     if remove_user(chat_id, username):
-        context.bot.send_message(
+        await context.bot.send_message(
             chat_id=chat_id,
             text=f"✅ Stopped tracking @{username}.",
             parse_mode="HTML"
         )
     else:
-        context.bot.send_message(
+        await context.bot.send_message(
             chat_id=chat_id,
             text=f"ℹ️ You weren't tracking @{username}.",
             parse_mode="HTML"
         )
 
-def list_tracked(update: Update, context: Any) -> None:
+async def list_tracked(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     """Handle the /list command."""
     chat_id = update.effective_chat.id
     users = load_users()
     tracked = users.get(str(chat_id), [])
     
     if not tracked:
-        context.bot.send_message(
+        await context.bot.send_message(
             chat_id=chat_id,
             text="ℹ️ You're not tracking any Instagram accounts yet.\n"
                  "Use /track <username> to start tracking.",
@@ -150,36 +218,176 @@ def list_tracked(update: Update, context: Any) -> None:
     else:
         message = "📋 <b>You're tracking these Instagram accounts:</b>\n\n"
         message += "\n".join([f"• @{username}" for username in tracked])
-        context.bot.send_message(
+        await context.bot.send_message(
             chat_id=chat_id,
             text=message,
             parse_mode="HTML"
         )
 
-def error_handler(update: Optional[Update], context: Any) -> None:
+async def download(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
+    """Handle the /download command."""
+    chat_id = update.effective_chat.id
+    if not context.args:
+        await context.bot.send_message(
+            chat_id=chat_id,
+            text="❌ Please provide an Instagram username to download stories from.\n"
+                 "Example: /download kimkardashian",
+            parse_mode="HTML"
+        )
+        return
+
+    username = context.args[0].lower()
+    if not validate_username(username):
+        await context.bot.send_message(
+            chat_id=chat_id,
+            text="❌ Invalid Instagram username format.\n"
+                 "Usernames can only contain letters, numbers, periods, and underscores.",
+            parse_mode="HTML"
+        )
+        return
+
+    # Send initial message
+    await context.bot.send_message(
+        chat_id=chat_id,
+        text=f"🔄 Checking stories for @{username}...\n"
+             "This might take a moment while I do my sneaky business. 👀",
+        parse_mode="HTML"
+    )
+
+    try:
+        # Initialize monitor
+        monitor = InstagramMonitor()
+        
+        # Login to Instagram
+        if not await monitor.login_to_instagram():
+            await context.bot.send_message(
+                chat_id=chat_id,
+                text="❌ Failed to login to Instagram. Please try again later.",
+                parse_mode="HTML"
+            )
+            return
+
+        # Navigate to profile
+        await monitor.page.goto(f"https://www.instagram.com/{username}/")
+        await monitor.page.wait_for_selector('header', timeout=10000)
+        
+        # Check for story ring
+        story_ring = await monitor.page.query_selector('div[role="button"] canvas')
+        if not story_ring:
+            await context.bot.send_message(
+                chat_id=chat_id,
+                text=f"😴 No active stories found for @{username}.\n\n"
+                     "Your collection of sadness is empty. Maybe they're:\n"
+                     "• Living their best life offline (unlike you)\n"
+                     "• Actually being productive (unlike you)\n"
+                     "• Just not interested in sharing their life with random stalkers (like you)\n\n"
+                     "Try again later when they're actually doing something interesting. Or maybe... get a life? 🤷‍♂️",
+                parse_mode="HTML"
+            )
+            return
+
+        # Click story ring and wait for story viewer
+        await story_ring.click()
+        await monitor.page.wait_for_selector('div[role="dialog"]', timeout=5000)
+        
+        # Get story container
+        story_element = await monitor.page.query_selector('div[role="dialog"]')
+        if not story_element:
+            await context.bot.send_message(
+                chat_id=chat_id,
+                text=f"❌ Could not open stories for @{username}.\n"
+                     "Maybe they're private or blocked you? 🤔",
+                parse_mode="HTML"
+            )
+            return
+
+        # Process story content
+        story_content = await monitor.get_story_content(story_element)
+        if not story_content:
+            await context.bot.send_message(
+                chat_id=chat_id,
+                text=f"❌ Could not download story content for @{username}.\n"
+                     "Instagram might be onto us... 👮‍♂️",
+                parse_mode="HTML"
+            )
+            return
+
+        # Send the content
+        if story_content['type'] == 'video':
+            # For videos, send both the video and a screenshot
+            await context.bot.send_video(
+                chat_id=chat_id,
+                video=story_content['media_content'],
+                caption=f"🎥 Story from @{username}\n"
+                       "Here's your stolen content, you sneaky stalker! 😏",
+                parse_mode="HTML"
+            )
+            await context.bot.send_photo(
+                chat_id=chat_id,
+                photo=story_content['screenshot'],
+                caption="📸 Screenshot of the video (in case you're too lazy to watch it)",
+                parse_mode="HTML"
+            )
+        else:
+            # For images, just send the image
+            await context.bot.send_photo(
+                chat_id=chat_id,
+                photo=story_content['media_content'],
+                caption=f"🖼️ Story from @{username}\n"
+                       "Here's your stolen content, you sneaky stalker! 😏",
+                parse_mode="HTML"
+            )
+
+        await context.bot.send_message(
+            chat_id=chat_id,
+            text="✅ Story downloaded successfully!\n"
+                 "Don't forget to delete this message if you don't want evidence of your stalking habits. 😉",
+            parse_mode="HTML"
+        )
+
+    except Exception as e:
+        logger.error(f"Error downloading story for @{username}: {e}")
+        await context.bot.send_message(
+            chat_id=chat_id,
+            text=f"❌ Error downloading story: {str(e)}\n"
+                 "Maybe try again later? Or maybe you should just... stop stalking? 🤷‍♂️",
+            parse_mode="HTML"
+        )
+    finally:
+        await monitor.cleanup_browser()
+
+async def error_handler(update: Optional[Update], context: ContextTypes.DEFAULT_TYPE) -> None:
     """Handle errors."""
     logger.error(f"Update {update} caused error {context.error}")
     if update and update.effective_chat:
-        context.bot.send_message(
+        await context.bot.send_message(
             chat_id=update.effective_chat.id,
             text="❌ An error occurred. Please try again later.",
             parse_mode="HTML"
         )
 
 # Register handlers
-dispatcher.add_handler(CommandHandler("start", start))
-dispatcher.add_handler(CommandHandler("track", track))
-dispatcher.add_handler(CommandHandler("untrack", untrack))
-dispatcher.add_handler(CommandHandler("list", list_tracked))
-dispatcher.add_error_handler(error_handler)
+application.add_handler(CommandHandler("start", start))
+application.add_handler(CommandHandler("track", track))
+application.add_handler(CommandHandler("untrack", untrack))
+application.add_handler(CommandHandler("list", list_tracked))
+application.add_handler(CommandHandler("download", download))
+application.add_handler(CommandHandler("stats", lambda u, c: c.bot.send_message(u.effective_chat.id, "📊 Stats coming soon!")))
+application.add_handler(CommandHandler("level", lambda u, c: c.bot.send_message(u.effective_chat.id, "🏆 Level system coming soon!")))
+application.add_handler(CommandHandler("roast", lambda u, c: c.bot.send_message(u.effective_chat.id, "🔥 Roasting system coming soon!")))
+application.add_handler(CommandHandler("tips", lambda u, c: c.bot.send_message(u.effective_chat.id, "🎯 Tips coming soon!")))
+application.add_handler(CommandHandler("achievements", lambda u, c: c.bot.send_message(u.effective_chat.id, "🏅 Achievements coming soon!")))
+application.add_handler(CommandHandler("help", start))  # Reuse start command for help
+application.add_error_handler(error_handler)
 
 @app.route('/webhook', methods=['POST'])
+@limiter.limit("5 per second")
 def webhook():
     """Handle incoming webhook updates."""
     if request.method == "POST":
         try:
-            update = Update.de_json(request.get_json(force=True), bot)
-            dispatcher.process_update(update)
+            update = Update.de_json(request.get_json(force=True), application.bot)
+            asyncio.run(application.process_update(update))
             return "ok"
         except Exception as e:
             logger.error(f"Error processing webhook update: {e}")
