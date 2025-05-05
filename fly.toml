@@ -10,7 +10,7 @@ primary_region = 'sjc'
   PLAYWRIGHT_BROWSERS_PATH = "/ms-playwright"
 
 [processes]
-  app = "python loop_story_checker.py"
+  app = "python instagram_monitor.py"
 
 [[vm]]
   memory = '1gb'

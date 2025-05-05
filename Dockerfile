@@ -6,5 +6,9 @@ COPY . .
 
 RUN pip install --no-cache-dir -r requirements.txt
 
-CMD ["python", "loop_story_checker.py"]
+# Create necessary directories
+RUN mkdir -p alert_states
+
+# Start both services
+CMD ["sh", "-c", "python run_bot.py & python instagram_monitor.py"]
 

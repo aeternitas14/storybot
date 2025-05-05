@@ -1,11 +1,31 @@
+# Python
 __pycache__/
-*.json
-*.log
 *.pyc
-*.db
+*.pyo
+*.pyd
+.Python
+venv/
+env/
+.env
+
+# Logs
+*.log
+nohup.out
+
+# State files
 state.json
-alert_state_*.json
+alert_states/
 users.json
 subscribers.json
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
 
 
