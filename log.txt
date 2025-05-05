@@ -1,0 +1,1750 @@
+>>> Bot started...
+Sent alert to 123456789: 400
+New story for testuser (123456789). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sent alert to 6147723761: 200
+New story for danfruhman (6147723761). Alert sent.
+Could not find story thumbnail for <danfruhman>
+Sent alert to 543859297: 200
+New story for danfruhman (543859297). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sleeping for 5 minutes...
+Sent alert to 123456789: 400
+New story for testuser (123456789). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sent alert to 6147723761: 200
+New story for danfruhman (6147723761). Alert sent.
+Could not find story thumbnail for <danfruhman>
+Sent alert to 543859297: 200
+New story for danfruhman (543859297). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sleeping for 5 minutes...
+Error in main loop: BrowserType.launch: Timeout 180000ms exceeded.
+Call log:
+  - <launching> /Users/emirerkan/Library/Caches/ms-playwright/chromium_headless_shell-1169/chrome-mac/headless_shell --disable-field-trial-config --disable-background-networking --disable-background-timer-throttling --disable-backgrounding-occluded-windows --disable-back-forward-cache --disable-breakpad --disable-client-side-phishing-detection --disable-component-extensions-with-background-pages --disable-component-update --no-default-browser-check --disable-default-apps --disable-dev-shm-usage --disable-extensions --disable-features=AcceptCHFrame,AutoExpandDetailsElement,AvoidUnnecessaryBeforeUnloadCheckSync,CertificateTransparencyComponentUpdater,DeferRendererTasksAfterInput,DestroyProfileOnBrowserClose,DialMediaRouteProvider,ExtensionManifestV2Disabled,GlobalMediaControls,HttpsUpgrades,ImprovedCookieControls,LazyFrameLoading,LensOverlay,MediaRouter,PaintHolding,ThirdPartyStoragePartitioning,Translate --allow-pre-commit-input --disable-hang-monitor --disable-ipc-flooding-protection --disable-popup-blocking --disable-prompt-on-repost --disable-renderer-backgrounding --force-color-profile=srgb --metrics-recording-only --no-first-run --enable-automation --password-store=basic --use-mock-keychain --no-service-autorun --export-tagged-pdf --disable-search-engine-choice-screen --unsafely-disable-devtools-self-xss-warnings --enable-use-zoom-for-dsf=false --use-angle --headless --hide-scrollbars --mute-audio --blink-settings=primaryHoverType=2,availableHoverTypes=2,primaryPointerType=4,availablePointerTypes=4 --no-sandbox --user-data-dir=/var/folders/mz/0l66_0191ml12qwg1bl9kph40000gn/T/playwright_chromiumdev_profile-LQVaTg --remote-debugging-pipe --no-startup-window
+  - <launched> pid=28314
+
+Sent alert to 123456789: 400
+New story for testuser (123456789). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sent alert to 6147723761: 200
+New story for danfruhman (6147723761). Alert sent.
+Error in main loop: Page.goto: Timeout 30000ms exceeded.
+Call log:
+  - navigating to "https://www.instagram.com/%3Cdanfruhman%3E/", waiting until "domcontentloaded"
+
+Sent alert to 123456789: 400
+New story for testuser (123456789). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sent alert to 6147723761: 200
+New story for danfruhman (6147723761). Alert sent.
+Could not find story thumbnail for <danfruhman>
+Sent alert to 543859297: 200
+New story for danfruhman (543859297). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sleeping for 5 minutes...
+Sent alert to 123456789: 400
+New story for testuser (123456789). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sent alert to 6147723761: 200
+New story for danfruhman (6147723761). Alert sent.
+Could not find story thumbnail for <danfruhman>
+Error in main loop: Page.goto: Timeout 30000ms exceeded.
+Call log:
+  - navigating to "https://www.instagram.com/danfruhman/", waiting until "domcontentloaded"
+
+Sent alert to 123456789: 400
+New story for testuser (123456789). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sent alert to 6147723761: 200
+New story for danfruhman (6147723761). Alert sent.
+Could not find story thumbnail for <danfruhman>
+Sent alert to 543859297: 200
+New story for danfruhman (543859297). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sleeping for 5 minutes...
+Sent alert to 123456789: 400
+New story for testuser (123456789). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sent alert to 6147723761: 200
+New story for danfruhman (6147723761). Alert sent.
+Could not find story thumbnail for <danfruhman>
+Sent alert to 543859297: 200
+New story for danfruhman (543859297). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sleeping for 5 minutes...
+Error in main loop: Page.goto: Timeout 30000ms exceeded.
+Call log:
+  - navigating to "https://www.instagram.com/testuser/", waiting until "domcontentloaded"
+
+Sent alert to 123456789: 400
+New story for testuser (123456789). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sent alert to 6147723761: 200
+New story for danfruhman (6147723761). Alert sent.
+Could not find story thumbnail for <danfruhman>
+Could not find story thumbnail for danfruhman
+Could not find story thumbnail for pearlygatesbaby
+Sleeping for 5 minutes...
+Sent alert to 123456789: 400
+New story for testuser (123456789). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sent alert to 6147723761: 200
+New story for danfruhman (6147723761). Alert sent.
+Could not find story thumbnail for <danfruhman>
+Sent alert to 543859297: 200
+New story for danfruhman (543859297). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sleeping for 5 minutes...
+Sent alert to 123456789: 400
+New story for testuser (123456789). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sent alert to 6147723761: 200
+New story for danfruhman (6147723761). Alert sent.
+Could not find story thumbnail for <danfruhman>
+Sent alert to 543859297: 200
+New story for danfruhman (543859297). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sleeping for 5 minutes...
+Sent alert to 123456789: 400
+New story for testuser (123456789). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sent alert to 6147723761: 200
+New story for danfruhman (6147723761). Alert sent.
+Could not find story thumbnail for <danfruhman>
+Sent alert to 543859297: 200
+New story for danfruhman (543859297). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sleeping for 5 minutes...
+Sent alert to 123456789: 400
+New story for testuser (123456789). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sent alert to 6147723761: 200
+New story for danfruhman (6147723761). Alert sent.
+Could not find story thumbnail for <danfruhman>
+Sent alert to 543859297: 200
+New story for danfruhman (543859297). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sleeping for 5 minutes...
+Sent alert to 123456789: 400
+New story for testuser (123456789). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sent alert to 6147723761: 200
+New story for danfruhman (6147723761). Alert sent.
+Could not find story thumbnail for <danfruhman>
+Sent alert to 543859297: 200
+New story for danfruhman (543859297). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sleeping for 5 minutes...
+Sent alert to 123456789: 400
+New story for testuser (123456789). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sent alert to 6147723761: 200
+New story for danfruhman (6147723761). Alert sent.
+Could not find story thumbnail for <danfruhman>
+Sent alert to 543859297: 200
+New story for danfruhman (543859297). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sleeping for 5 minutes...
+Sent alert to 123456789: 400
+New story for testuser (123456789). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sent alert to 6147723761: 200
+New story for danfruhman (6147723761). Alert sent.
+Could not find story thumbnail for <danfruhman>
+Sent alert to 543859297: 200
+New story for danfruhman (543859297). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sleeping for 5 minutes...
+Sent alert to 123456789: 400
+New story for testuser (123456789). Alert sent.
+Could not find story thumbnail for pearlygatesbaby>>> Bot started...
+Sent alert to 123456789: 400
+New story for testuser (123456789). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sent alert to 6147723761: 200
+New story for danfruhman (6147723761). Alert sent.
+Could not find story thumbnail for <danfruhman>
+Sent alert to 543859297: 200
+New story for danfruhman (543859297). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sleeping for 5 minutes...
+Sent alert to 123456789: 400
+New story for testuser (123456789). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sent alert to 6147723761: 200
+New story for danfruhman (6147723761). Alert sent.
+Could not find story thumbnail for <danfruhman>
+Sent alert to 543859297: 200
+New story for danfruhman (543859297). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sleeping for 5 minutes...
+Sent alert to 123456789: 400
+New story for testuser (123456789). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Could not find story thumbnail for danfruhman
+Could not find story thumbnail for <danfruhman>
+Sent alert to 543859297: 200
+New story for danfruhman (543859297). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sleeping for 5 minutes...
+Sent alert to 123456789: 400
+New story for testuser (123456789). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sent alert to 6147723761: 200
+New story for danfruhman (6147723761). Alert sent.
+Could not find story thumbnail for <danfruhman>
+Sent alert to 543859297: 200
+New story for danfruhman (543859297). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sleeping for 5 minutes...
+Sent alert to 123456789: 400
+New story for testuser (123456789). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sent alert to 6147723761: 200
+New story for danfruhman (6147723761). Alert sent.
+Could not find story thumbnail for <danfruhman>
+Sent alert to 543859297: 200
+New story for danfruhman (543859297). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sleeping for 5 minutes...
+Sent alert to 123456789: 400
+New story for testuser (123456789). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sent alert to 6147723761: 200
+New story for danfruhman (6147723761). Alert sent.
+Could not find story thumbnail for <danfruhman>
+Sent alert to 543859297: 200
+New story for danfruhman (543859297). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sleeping for 5 minutes...
+Sent alert to 123456789: 400
+New story for testuser (123456789). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sent alert to 6147723761: 200
+New story for danfruhman (6147723761). Alert sent.
+Could not find story thumbnail for <danfruhman>
+Sent alert to 543859297: 200
+New story for danfruhman (543859297). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sleeping for 5 minutes...
+Sent alert to 123456789: 400
+New story for testuser (123456789). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sent alert to 6147723761: 200
+New story for danfruhman (6147723761). Alert sent.
+Could not find story thumbnail for <danfruhman>
+Sent alert to 543859297: 200
+New story for danfruhman (543859297). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sleeping for 5 minutes...
+Sent alert to 123456789: 400
+New story for testuser (123456789). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sent alert to 6147723761: 200
+New story for danfruhman (6147723761). Alert sent.
+Could not find story thumbnail for <danfruhman>
+Sent alert to 543859297: 200
+New story for danfruhman (543859297). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sleeping for 5 minutes...
+Sent alert to 123456789: 400
+New story for testuser (123456789). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sent alert to 6147723761: 200
+New story for danfruhman (6147723761). Alert sent.
+Could not find story thumbnail for <danfruhman>
+Sent alert to 543859297: 200
+New story for danfruhman (543859297). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sleeping for 5 minutes...
+Sent alert to 123456789: 400
+New story for testuser (123456789). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sent alert to 6147723761: 200
+New story for danfruhman (6147723761). Alert sent.
+Could not find story thumbnail for <danfruhman>
+Sent alert to 543859297: 200
+New story for danfruhman (543859297). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sleeping for 5 minutes...
+Sent alert to 123456789: 400
+New story for testuser (123456789). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sent alert to 6147723761: 200
+New story for danfruhman (6147723761). Alert sent.
+Could not find story thumbnail for <danfruhman>
+Sent alert to 543859297: 200
+New story for danfruhman (543859297). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sleeping for 5 minutes...
+Sent alert to 123456789: 400
+New story for testuser (123456789). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sent alert to 6147723761: 200
+New story for danfruhman (6147723761). Alert sent.
+Could not find story thumbnail for <danfruhman>
+Sent alert to 543859297: 200
+New story for danfruhman (543859297). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sleeping for 5 minutes...
+Sent alert to 123456789: 400
+New story for testuser (123456789). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sent alert to 6147723761: 200
+New story for danfruhman (6147723761). Alert sent.
+Could not find story thumbnail for <danfruhman>
+Sent alert to 543859297: 200
+New story for danfruhman (543859297). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sleeping for 5 minutes...
+Sent alert to 123456789: 400
+New story for testuser (123456789). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sent alert to 6147723761: 200
+New story for danfruhman (6147723761). Alert sent.
+Could not find story thumbnail for <danfruhman>
+Sent alert to 543859297: 200
+New story for danfruhman (543859297). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sleeping for 5 minutes...
+Sent alert to 123456789: 400
+New story for testuser (123456789). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sent alert to 6147723761: 200
+New story for danfruhman (6147723761). Alert sent.
+Could not find story thumbnail for <danfruhman>
+Sent alert to 543859297: 200
+New story for danfruhman (543859297). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sleeping for 5 minutes...
+Sent alert to 123456789: 400
+New story for testuser (123456789). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sent alert to 6147723761: 200
+New story for danfruhman (6147723761). Alert sent.
+Could not find story thumbnail for <danfruhman>
+Sent alert to 543859297: 200
+New story for danfruhman (543859297). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sleeping for 5 minutes...
+Sent alert to 123456789: 400
+New story for testuser (123456789). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sent alert to 6147723761: 200
+New story for danfruhman (6147723761). Alert sent.
+Could not find story thumbnail for <danfruhman>
+Sent alert to 543859297: 200
+New story for danfruhman (543859297). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sleeping for 5 minutes...
+Sent alert to 123456789: 400
+New story for testuser (123456789). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sent alert to 6147723761: 200
+New story for danfruhman (6147723761). Alert sent.
+Could not find story thumbnail for <danfruhman>
+Sent alert to 543859297: 200
+New story for danfruhman (543859297). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sleeping for 5 minutes...
+Sent alert to 123456789: 400
+New story for testuser (123456789). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sent alert to 6147723761: 200
+New story for danfruhman (6147723761). Alert sent.
+Could not find story thumbnail for <danfruhman>
+Sent alert to 543859297: 200
+New story for danfruhman (543859297). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sent alert to 6147723761: 200
+New story for danfruhman (6147723761). Alert sent.
+Could not find story thumbnail for <danfruhman>
+Sent alert to 543859297: 200
+New story for danfruhman (543859297). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sleeping for 5 minutes...
+Sent alert to 123456789: 400
+New story for testuser (123456789). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sent alert to 6147723761: 200
+New story for danfruhman (6147723761). Alert sent.
+Could not find story thumbnail for <danfruhman>
+Sent alert to 543859297: 200
+New story for danfruhman (543859297). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sleeping for 5 minutes...
+Sent alert to 123456789: 400
+New story for testuser (123456789). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sent alert to 6147723761: 200
+New story for danfruhman (6147723761). Alert sent.
+Could not find story thumbnail for <danfruhman>
+Sent alert to 543859297: 200
+New story for danfruhman (543859297). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sleeping for 5 minutes...
+Sent alert to 123456789: 400
+New story for testuser (123456789). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sent alert to 6147723761: 200
+New story for danfruhman (6147723761). Alert sent.
+Could not find story thumbnail for <danfruhman>
+Sent alert to 543859297: 200
+New story for danfruhman (543859297). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sleeping for 5 minutes...
+Sent alert to 123456789: 400
+New story for testuser (123456789). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sent alert to 6147723761: 200
+New story for danfruhman (6147723761). Alert sent.
+Could not find story thumbnail for <danfruhman>
+Sent alert to 543859297: 200
+New story for danfruhman (543859297). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sleeping for 5 minutes...
+Sent alert to 123456789: 400
+New story for testuser (123456789). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sent alert to 6147723761: 200
+New story for danfruhman (6147723761). Alert sent.
+Could not find story thumbnail for <danfruhman>
+Sent alert to 543859297: 200
+New story for danfruhman (543859297). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sleeping for 5 minutes...
+Sent alert to 123456789: 400
+New story for testuser (123456789). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sent alert to 6147723761: 200
+New story for danfruhman (6147723761). Alert sent.
+Could not find story thumbnail for <danfruhman>
+Sent alert to 543859297: 200
+New story for danfruhman (543859297). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sleeping for 5 minutes...
+Sent alert to 123456789: 400
+New story for testuser (123456789). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sent alert to 6147723761: 200
+New story for danfruhman (6147723761). Alert sent.
+Could not find story thumbnail for <danfruhman>
+Sent alert to 543859297: 200
+New story for danfruhman (543859297). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sleeping for 5 minutes...
+Sent alert to 123456789: 400
+New story for testuser (123456789). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sent alert to 6147723761: 200
+New story for danfruhman (6147723761). Alert sent.
+Could not find story thumbnail for <danfruhman>
+Sent alert to 543859297: 200
+New story for danfruhman (543859297). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sleeping for 5 minutes...
+Sent alert to 123456789: 400
+New story for testuser (123456789). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sent alert to 6147723761: 200
+New story for danfruhman (6147723761). Alert sent.
+Could not find story thumbnail for <danfruhman>
+Sent alert to 543859297: 200
+New story for danfruhman (543859297). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sleeping for 5 minutes...
+Sent alert to 123456789: 400
+New story for testuser (123456789). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sent alert to 6147723761: 200
+New story for danfruhman (6147723761). Alert sent.
+Could not find story thumbnail for <danfruhman>
+Sent alert to 543859297: 200
+New story for danfruhman (543859297). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sleeping for 5 minutes...
+Sent alert to 123456789: 400
+New story for testuser (123456789). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sent alert to 6147723761: 200
+New story for danfruhman (6147723761). Alert sent.
+Could not find story thumbnail for <danfruhman>
+Sent alert to 543859297: 200
+New story for danfruhman (543859297). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sleeping for 5 minutes...
+Sent alert to 123456789: 400
+New story for testuser (123456789). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sent alert to 6147723761: 200
+New story for danfruhman (6147723761). Alert sent.
+Could not find story thumbnail for <danfruhman>
+Sent alert to 543859297: 200
+New story for danfruhman (543859297). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sleeping for 5 minutes...
+Sent alert to 123456789: 400
+New story for testuser (123456789). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sent alert to 6147723761: 200
+New story for danfruhman (6147723761). Alert sent.
+Could not find story thumbnail for <danfruhman>
+Sent alert to 543859297: 200
+New story for danfruhman (543859297). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sleeping for 5 minutes...
+Sent alert to 123456789: 400
+New story for testuser (123456789). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sent alert to 6147723761: 200
+New story for danfruhman (6147723761). Alert sent.
+Could not find story thumbnail for <danfruhman>
+Sent alert to 543859297: 200
+New story for danfruhman (543859297). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sleeping for 5 minutes...
+Sent alert to 123456789: 400
+New story for testuser (123456789). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sent alert to 6147723761: 200
+New story for danfruhman (6147723761). Alert sent.
+Could not find story thumbnail for <danfruhman>
+Sent alert to 543859297: 200
+New story for danfruhman (543859297). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sleeping for 5 minutes...
+Sent alert to 123456789: 400
+New story for testuser (123456789). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sent alert to 6147723761: 200
+New story for danfruhman (6147723761). Alert sent.
+Could not find story thumbnail for <danfruhman>
+Sent alert to 543859297: 200
+New story for danfruhman (543859297). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sleeping for 5 minutes...
+Sent alert to 123456789: 400
+New story for testuser (123456789). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sent alert to 6147723761: 200
+New story for danfruhman (6147723761). Alert sent.
+Could not find story thumbnail for <danfruhman>
+Sent alert to 543859297: 200
+New story for danfruhman (543859297). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sleeping for 5 minutes...
+Sent alert to 123456789: 400
+New story for testuser (123456789). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sent alert to 6147723761: 200
+New story for danfruhman (6147723761). Alert sent.
+Could not find story thumbnail for <danfruhman>
+Sent alert to 543859297: 200
+New story for danfruhman (543859297). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sleeping for 5 minutes...
+Sent alert to 123456789: 400
+New story for testuser (123456789). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sent alert to 6147723761: 200
+New story for danfruhman (6147723761). Alert sent.
+Could not find story thumbnail for <danfruhman>
+Sent alert to 543859297: 200
+New story for danfruhman (543859297). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sleeping for 5 minutes...
+Sent alert to 123456789: 400
+New story for testuser (123456789). Alert sent.
+Sleeping for 5 minutes...
+Sent alert to 123456789: 400
+New story for testuser (123456789). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sent alert to 6147723761: 200
+New story for danfruhman (6147723761). Alert sent.
+Could not find story thumbnail for <danfruhman>
+Sent alert to 543859297: 200
+New story for danfruhman (543859297). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sleeping for 5 minutes...
+Error in main loop: Page.goto: Timeout 30000ms exceeded.
+Call log:
+  - navigating to "https://www.instagram.com/testuser/", waiting until "domcontentloaded"
+
+Sent alert to 123456789: 400
+New story for testuser (123456789). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sent alert to 6147723761: 200
+New story for danfruhman (6147723761). Alert sent.
+Could not find story thumbnail for <danfruhman>
+Sent alert to 543859297: 200
+New story for danfruhman (543859297). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sleeping for 5 minutes...
+Sent alert to 123456789: 400
+New story for testuser (123456789). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sent alert to 6147723761: 200
+New story for danfruhman (6147723761). Alert sent.
+Could not find story thumbnail for <danfruhman>
+Sent alert to 543859297: 200
+New story for danfruhman (543859297). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sleeping for 5 minutes...
+Sent alert to 123456789: 400
+New story for testuser (123456789). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sent alert to 6147723761: 200
+New story for danfruhman (6147723761). Alert sent.
+Could not find story thumbnail for <danfruhman>
+Sent alert to 543859297: 200
+New story for danfruhman (543859297). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sleeping for 5 minutes...
+Sent alert to 123456789: 400
+New story for testuser (123456789). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sent alert to 6147723761: 200
+New story for danfruhman (6147723761). Alert sent.
+Could not find story thumbnail for <danfruhman>
+Sent alert to 543859297: 200
+New story for danfruhman (543859297). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sleeping for 5 minutes...
+Sent alert to 123456789: 400
+New story for testuser (123456789). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sent alert to 6147723761: 200
+New story for danfruhman (6147723761). Alert sent.
+Could not find story thumbnail for <danfruhman>
+Sent alert to 543859297: 200
+New story for danfruhman (543859297). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sleeping for 5 minutes...
+Sent alert to 123456789: 400
+New story for testuser (123456789). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sent alert to 6147723761: 200
+New story for danfruhman (6147723761). Alert sent.
+Could not find story thumbnail for <danfruhman>
+Sent alert to 543859297: 200
+New story for danfruhman (543859297). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sleeping for 5 minutes...
+Sent alert to 123456789: 400
+New story for testuser (123456789). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sent alert to 6147723761: 200
+New story for danfruhman (6147723761). Alert sent.
+Could not find story thumbnail for <danfruhman>
+Sent alert to 543859297: 200
+New story for danfruhman (543859297). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sleeping for 5 minutes...
+Sent alert to 123456789: 400
+New story for testuser (123456789). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sent alert to 6147723761: 200
+New story for danfruhman (6147723761). Alert sent.
+Could not find story thumbnail for <danfruhman>
+Sent alert to 543859297: 200
+New story for danfruhman (543859297). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sleeping for 5 minutes...
+Sent alert to 123456789: 400
+New story for testuser (123456789). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sent alert to 6147723761: 200
+New story for danfruhman (6147723761). Alert sent.
+Could not find story thumbnail for <danfruhman>
+Sent alert to 543859297: 200
+New story for danfruhman (543859297). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sleeping for 5 minutes...
+Could not find story thumbnail for testuser
+Could not find story thumbnail for pearlygatesbaby
+Sent alert to 6147723761: 200
+New story for danfruhman (6147723761). Alert sent.
+Could not find story thumbnail for <danfruhman>
+Sent alert to 543859297: 200
+New story for danfruhman (543859297). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sleeping for 5 minutes...
+Sent alert to 123456789: 400
+New story for testuser (123456789). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sent alert to 6147723761: 200
+New story for danfruhman (6147723761). Alert sent.
+Could not find story thumbnail for <danfruhman>
+Sent alert to 543859297: 200
+New story for danfruhman (543859297). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sleeping for 5 minutes...
+Sent alert to 123456789: 400
+New story for testuser (123456789). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sent alert to 6147723761: 200
+New story for danfruhman (6147723761). Alert sent.
+Could not find story thumbnail for <danfruhman>
+Sent alert to 543859297: 200
+New story for danfruhman (543859297). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sleeping for 5 minutes...
+Sent alert to 123456789: 400
+New story for testuser (123456789). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sent alert to 6147723761: 200
+New story for danfruhman (6147723761). Alert sent.
+Could not find story thumbnail for <danfruhman>
+Sent alert to 543859297: 200
+New story for danfruhman (543859297). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sleeping for 5 minutes...
+Sent alert to 123456789: 400
+New story for testuser (123456789). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sent alert to 6147723761: 200
+New story for danfruhman (6147723761). Alert sent.
+Could not find story thumbnail for <danfruhman>
+Sent alert to 543859297: 200
+New story for danfruhman (543859297). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sleeping for 5 minutes...
+Sent alert to 123456789: 400
+New story for testuser (123456789). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sent alert to 6147723761: 200
+New story for danfruhman (6147723761). Alert sent.
+Could not find story thumbnail for <danfruhman>
+Sent alert to 543859297: 200
+New story for danfruhman (543859297). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sleeping for 5 minutes...
+Sent alert to 123456789: 400
+New story for testuser (123456789). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sent alert to 6147723761: 200
+New story for danfruhman (6147723761). Alert sent.
+Could not find story thumbnail for <danfruhman>
+Sent alert to 543859297: 200
+New story for danfruhman (543859297). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sleeping for 5 minutes...
+Sent alert to 123456789: 400
+New story for testuser (123456789). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sent alert to 6147723761: 200
+New story for danfruhman (6147723761). Alert sent.
+Could not find story thumbnail for <danfruhman>
+Sent alert to 543859297: 200
+New story for danfruhman (543859297). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sleeping for 5 minutes...
+Sent alert to 123456789: 400
+New story for testuser (123456789). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sent alert to 6147723761: 200
+New story for danfruhman (6147723761). Alert sent.
+Could not find story thumbnail for <danfruhman>
+Sent alert to 543859297: 200
+New story for danfruhman (543859297). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sleeping for 5 minutes...
+Sent alert to 123456789: 400
+New story for testuser (123456789). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sent alert to 6147723761: 200
+New story for danfruhman (6147723761). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sent alert to 6147723761: 200
+New story for danfruhman (6147723761). Alert sent.
+Could not find story thumbnail for <danfruhman>
+Sent alert to 543859297: 200
+New story for danfruhman (543859297). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sleeping for 5 minutes...
+Sent alert to 123456789: 400
+New story for testuser (123456789). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sent alert to 6147723761: 200
+New story for danfruhman (6147723761). Alert sent.
+Could not find story thumbnail for <danfruhman>
+Sent alert to 543859297: 200
+New story for danfruhman (543859297). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sleeping for 5 minutes...
+Sent alert to 123456789: 400
+New story for testuser (123456789). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sent alert to 6147723761: 200
+New story for danfruhman (6147723761). Alert sent.
+Could not find story thumbnail for <danfruhman>
+Sent alert to 543859297: 200
+New story for danfruhman (543859297). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sleeping for 5 minutes...
+Sent alert to 123456789: 400
+New story for testuser (123456789). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sent alert to 6147723761: 200
+New story for danfruhman (6147723761). Alert sent.
+Could not find story thumbnail for <danfruhman>
+Sent alert to 543859297: 200
+New story for danfruhman (543859297). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sleeping for 5 minutes...
+Sent alert to 123456789: 400
+New story for testuser (123456789). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sent alert to 6147723761: 200
+New story for danfruhman (6147723761). Alert sent.
+Could not find story thumbnail for <danfruhman>
+Sent alert to 543859297: 200
+New story for danfruhman (543859297). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sleeping for 5 minutes...
+Sent alert to 123456789: 400
+New story for testuser (123456789). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sent alert to 6147723761: 200
+New story for danfruhman (6147723761). Alert sent.
+Could not find story thumbnail for <danfruhman>
+Sent alert to 543859297: 200
+New story for danfruhman (543859297). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sleeping for 5 minutes...
+Sent alert to 123456789: 400
+New story for testuser (123456789). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sent alert to 6147723761: 200
+New story for danfruhman (6147723761). Alert sent.
+Could not find story thumbnail for <danfruhman>
+Sent alert to 543859297: 200
+New story for danfruhman (543859297). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sleeping for 5 minutes...
+Sent alert to 123456789: 400
+New story for testuser (123456789). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sent alert to 6147723761: 200
+New story for danfruhman (6147723761). Alert sent.
+Could not find story thumbnail for <danfruhman>
+Sent alert to 543859297: 200
+New story for danfruhman (543859297). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sleeping for 5 minutes...
+Sent alert to 123456789: 400
+New story for testuser (123456789). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sent alert to 6147723761: 200
+New story for danfruhman (6147723761). Alert sent.
+Could not find story thumbnail for <danfruhman>
+Sent alert to 543859297: 200
+New story for danfruhman (543859297). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sleeping for 5 minutes...
+Sent alert to 123456789: 400
+New story for testuser (123456789). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sent alert to 6147723761: 200
+New story for danfruhman (6147723761). Alert sent.
+Could not find story thumbnail for <danfruhman>
+Sent alert to 543859297: 200
+New story for danfruhman (543859297). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sleeping for 5 minutes...
+Sent alert to 123456789: 400
+New story for testuser (123456789). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sent alert to 6147723761: 200
+New story for danfruhman (6147723761). Alert sent.
+Could not find story thumbnail for <danfruhman>
+Sent alert to 543859297: 200
+New story for danfruhman (543859297). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sleeping for 5 minutes...
+Sent alert to 123456789: 400
+New story for testuser (123456789). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sent alert to 6147723761: 200
+New story for danfruhman (6147723761). Alert sent.
+Could not find story thumbnail for <danfruhman>
+Sent alert to 543859297: 200
+New story for danfruhman (543859297). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sleeping for 5 minutes...
+Sent alert to 123456789: 400
+New story for testuser (123456789). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sent alert to 6147723761: 200
+New story for danfruhman (6147723761). Alert sent.
+Could not find story thumbnail for <danfruhman>
+Sent alert to 543859297: 200
+New story for danfruhman (543859297). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sleeping for 5 minutes...
+Sent alert to 123456789: 400
+New story for testuser (123456789). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sent alert to 6147723761: 200
+New story for danfruhman (6147723761). Alert sent.
+Could not find story thumbnail for <danfruhman>
+Sent alert to 543859297: 200
+New story for danfruhman (543859297). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sleeping for 5 minutes...
+Sent alert to 123456789: 400
+New story for testuser (123456789). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sent alert to 6147723761: 200
+New story for danfruhman (6147723761). Alert sent.
+Could not find story thumbnail for <danfruhman>
+Sent alert to 543859297: 200
+New story for danfruhman (543859297). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sleeping for 5 minutes...
+Sent alert to 123456789: 400
+New story for testuser (123456789). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sent alert to 6147723761: 200
+New story for danfruhman (6147723761). Alert sent.
+Could not find story thumbnail for <danfruhman>
+Sent alert to 543859297: 200
+New story for danfruhman (543859297). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sleeping for 5 minutes...
+Sent alert to 123456789: 400
+New story for testuser (123456789). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sent alert to 6147723761: 200
+New story for danfruhman (6147723761). Alert sent.
+Could not find story thumbnail for <danfruhman>
+Sent alert to 543859297: 200
+New story for danfruhman (543859297). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sleeping for 5 minutes...
+Sent alert to 123456789: 400
+New story for testuser (123456789). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sent alert to 6147723761: 200
+New story for danfruhman (6147723761). Alert sent.
+Could not find story thumbnail for <danfruhman>
+Sent alert to 543859297: 200
+New story for danfruhman (543859297). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sleeping for 5 minutes...
+Sent alert to 123456789: 400
+New story for testuser (123456789). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sent alert to 6147723761: 200
+New story for danfruhman (6147723761). Alert sent.
+Could not find story thumbnail for <danfruhman>
+Sent alert to 543859297: 200
+New story for danfruhman (543859297). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sleeping for 5 minutes...
+Sent alert to 123456789: 400
+New story for testuser (123456789). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sent alert to 6147723761: 200
+New story for danfruhman (6147723761). Alert sent.
+Could not find story thumbnail for <danfruhman>
+Sent alert to 543859297: 200
+New story for danfruhman (543859297). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sleeping for 5 minutes...
+Sent alert to 123456789: 400
+Could not find story thumbnail for <danfruhman>
+Sent alert to 543859297: 200
+New story for danfruhman (543859297). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sleeping for 5 minutes...
+Sent alert to 123456789: 400
+New story for testuser (123456789). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sent alert to 6147723761: 200
+New story for danfruhman (6147723761). Alert sent.
+Could not find story thumbnail for <danfruhman>
+Sent alert to 543859297: 200
+New story for danfruhman (543859297). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sleeping for 5 minutes...
+Sent alert to 123456789: 400
+New story for testuser (123456789). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sent alert to 6147723761: 200
+New story for danfruhman (6147723761). Alert sent.
+Could not find story thumbnail for <danfruhman>
+Sent alert to 543859297: 200
+New story for danfruhman (543859297). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sleeping for 5 minutes...
+Sent alert to 123456789: 400
+New story for testuser (123456789). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sent alert to 6147723761: 200
+New story for danfruhman (6147723761). Alert sent.
+Could not find story thumbnail for <danfruhman>
+Sent alert to 543859297: 200
+New story for danfruhman (543859297). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sleeping for 5 minutes...
+Sent alert to 123456789: 400
+New story for testuser (123456789). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sent alert to 6147723761: 200
+New story for danfruhman (6147723761). Alert sent.
+Could not find story thumbnail for <danfruhman>
+Sent alert to 543859297: 200
+New story for danfruhman (543859297). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sleeping for 5 minutes...
+Sent alert to 123456789: 400
+New story for testuser (123456789). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sent alert to 6147723761: 200
+New story for danfruhman (6147723761). Alert sent.
+Could not find story thumbnail for <danfruhman>
+Sent alert to 543859297: 200
+New story for danfruhman (543859297). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sleeping for 5 minutes...
+Error in main loop: Page.goto: Timeout 30000ms exceeded.
+Call log:
+  - navigating to "https://www.instagram.com/testuser/", waiting until "domcontentloaded"
+
+Sent alert to 123456789: 400
+New story for testuser (123456789). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sent alert to 6147723761: 200
+New story for danfruhman (6147723761). Alert sent.
+Could not find story thumbnail for <danfruhman>
+Sent alert to 543859297: 200
+New story for danfruhman (543859297). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sleeping for 5 minutes...
+Sent alert to 123456789: 400
+New story for testuser (123456789). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sent alert to 6147723761: 200
+New story for danfruhman (6147723761). Alert sent.
+Could not find story thumbnail for <danfruhman>
+Sent alert to 543859297: 200
+New story for danfruhman (543859297). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sleeping for 5 minutes...
+Sent alert to 123456789: 400
+New story for testuser (123456789). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sent alert to 6147723761: 200
+New story for danfruhman (6147723761). Alert sent.
+Could not find story thumbnail for <danfruhman>
+Sent alert to 543859297: 200
+New story for danfruhman (543859297). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sleeping for 5 minutes...
+Sent alert to 123456789: 400
+New story for testuser (123456789). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sent alert to 6147723761: 200
+New story for danfruhman (6147723761). Alert sent.
+Could not find story thumbnail for <danfruhman>
+Sent alert to 543859297: 200
+New story for danfruhman (543859297). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sleeping for 5 minutes...
+Sent alert to 123456789: 400
+New story for testuser (123456789). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sent alert to 6147723761: 200
+New story for danfruhman (6147723761). Alert sent.
+Could not find story thumbnail for <danfruhman>
+Sent alert to 543859297: 200
+New story for danfruhman (543859297). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sleeping for 5 minutes...
+Sent alert to 123456789: 400
+New story for testuser (123456789). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Could not find story thumbnail for danfruhman
+Could not find story thumbnail for <danfruhman>
+Sent alert to 543859297: 200
+New story for danfruhman (543859297). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sleeping for 5 minutes...
+Sent alert to 123456789: 400
+New story for testuser (123456789). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sent alert to 6147723761: 200
+New story for danfruhman (6147723761). Alert sent.
+Could not find story thumbnail for <danfruhman>
+Sent alert to 543859297: 200
+New story for danfruhman (543859297). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sleeping for 5 minutes...
+Sent alert to 123456789: 400
+New story for testuser (123456789). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sent alert to 6147723761: 200
+New story for danfruhman (6147723761). Alert sent.
+Could not find story thumbnail for <danfruhman>
+Sent alert to 543859297: 200
+New story for danfruhman (543859297). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sleeping for 5 minutes...
+Sent alert to 123456789: 400
+New story for testuser (123456789). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sent alert to 6147723761: 200
+New story for danfruhman (6147723761). Alert sent.
+Could not find story thumbnail for <danfruhman>
+Sent alert to 543859297: 200
+New story for danfruhman (543859297). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sleeping for 5 minutes...
+Sent alert to 123456789: 400
+New story for testuser (123456789). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sent alert to 6147723761: 200
+New story for danfruhman (6147723761). Alert sent.
+Could not find story thumbnail for <danfruhman>
+Sent alert to 543859297: 200
+New story for danfruhman (543859297). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sleeping for 5 minutes...
+Sent alert to 123456789: 400
+New story for testuser (123456789). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sent alert to 6147723761: 200
+New story for danfruhman (6147723761). Alert sent.
+Could not find story thumbnail for <danfruhman>
+Sent alert to 543859297: 200
+New story for danfruhman (543859297). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sleeping for 5 minutes...
+Sent alert to 123456789: 400
+New story for testuser (123456789). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sent alert to 6147723761: 200
+New story for danfruhman (6147723761). Alert sent.
+Could not find story thumbnail for <danfruhman>
+Sent alert to 543859297: 200
+New story for danfruhman (543859297). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sleeping for 5 minutes...
+Sent alert to 123456789: 400
+New story for testuser (123456789). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sent alert to 6147723761: 200
+New story for danfruhman (6147723761). Alert sent.
+Could not find story thumbnail for <danfruhman>
+Sent alert to 543859297: 200
+New story for danfruhman (543859297). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sleeping for 5 minutes...
+Sent alert to 123456789: 400
+New story for testuser (123456789). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sent alert to 6147723761: 200
+New story for danfruhman (6147723761). Alert sent.
+Could not find story thumbnail for <danfruhman>
+Sent alert to 543859297: 200
+New story for danfruhman (543859297). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sleeping for 5 minutes...
+Sent alert to 123456789: 400
+New story for testuser (123456789). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sent alert to 6147723761: 200
+New story for danfruhman (6147723761). Alert sent.
+Could not find story thumbnail for <danfruhman>
+Sent alert to 543859297: 200
+New story for danfruhman (543859297). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sleeping for 5 minutes...
+Sent alert to 123456789: 400
+New story for testuser (123456789). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sent alert to 6147723761: 200
+New story for danfruhman (6147723761). Alert sent.
+Could not find story thumbnail for <danfruhman>
+Sent alert to 543859297: 200
+New story for danfruhman (543859297). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sleeping for 5 minutes...
+Sent alert to 123456789: 400
+New story for testuser (123456789). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sent alert to 6147723761: 200
+New story for danfruhman (6147723761). Alert sent.
+Could not find story thumbnail for <danfruhman>
+Sent alert to 543859297: 200
+New story for danfruhman (543859297). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sleeping for 5 minutes...
+Sent alert to 123456789: 400
+New story for testuser (123456789). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sent alert to 6147723761: 200
+New story for danfruhman (6147723761). Alert sent.
+Could not find story thumbnail for <danfruhman>
+Sent alert to 543859297: 200
+New story for danfruhman (543859297). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sleeping for 5 minutes...
+Sent alert to 123456789: 400
+New story for testuser (123456789). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sent alert to 6147723761: 200
+New story for danfruhman (6147723761). Alert sent.
+Could not find story thumbnail for <danfruhman>
+Sent alert to 543859297: 200
+New story for danfruhman (543859297). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sleeping for 5 minutes...
+Sent alert to 123456789: 400
+New story for testuser (123456789). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sent alert to 6147723761: 200
+New story for danfruhman (6147723761). Alert sent.
+Could not find story thumbnail for <danfruhman>
+Sent alert to 543859297: 200
+New story for danfruhman (543859297). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sleeping for 5 minutes...
+Sent alert to 123456789: 400
+New story for testuser (123456789). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sent alert to 6147723761: 200
+New story for danfruhman (6147723761). Alert sent.
+Could not find story thumbnail for <danfruhman>
+Sent alert to 543859297: 200
+New story for danfruhman (543859297). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sleeping for 5 minutes...
+Sent alert to 123456789: 400
+New story for testuser (123456789). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sent alert to 6147723761: 200
+New story for danfruhman (6147723761). Alert sent.
+Could not find story thumbnail for <danfruhman>
+Sent alert to 543859297: 200
+New story for danfruhman (543859297). Alert sent.
+Error in main loop: Page.goto: Timeout 30000ms exceeded.
+Call log:
+  - navigating to "https://www.instagram.com/pearlygatesbaby/", waiting until "domcontentloaded"
+
+Sent alert to 123456789: 400
+New story for testuser (123456789). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sent alert to 6147723761: 200
+New story for danfruhman (6147723761). Alert sent.
+Could not find story thumbnail for <danfruhman>
+Sent alert to 543859297: 200
+New story for danfruhman (543859297). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sleeping for 5 minutes...
+Sent alert to 123456789: 400
+New story for testuser (123456789). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sent alert to 6147723761: 200
+New story for danfruhman (6147723761). Alert sent.
+Could not find story thumbnail for <danfruhman>
+Sent alert to 543859297: 200
+New story for danfruhman (543859297). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sleeping for 5 minutes...
+Sent alert to 123456789: 400
+New story for testuser (123456789). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sent alert to 6147723761: 200
+New story for danfruhman (6147723761). Alert sent.
+Could not find story thumbnail for <danfruhman>
+Sent alert to 543859297: 200
+New story for danfruhman (543859297). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sleeping for 5 minutes...
+Sent alert to 123456789: 400
+New story for testuser (123456789). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sent alert to 6147723761: 200
+New story for danfruhman (6147723761). Alert sent.
+Could not find story thumbnail for <danfruhman>
+Sent alert to 543859297: 200
+New story for danfruhman (543859297). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sleeping for 5 minutes...
+Sent alert to 123456789: 400
+New story for testuser (123456789). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sent alert to 6147723761: 200
+New story for danfruhman (6147723761). Alert sent.
+Could not find story thumbnail for <danfruhman>
+Sent alert to 543859297: 200
+New story for danfruhman (543859297). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sleeping for 5 minutes...
+Sent alert to 123456789: 400
+New story for testuser (123456789). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sent alert to 6147723761: 200
+New story for danfruhman (6147723761). Alert sent.
+Could not find story thumbnail for <danfruhman>
+Sent alert to 543859297: 200
+New story for danfruhman (543859297). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sleeping for 5 minutes...
+Sent alert to 123456789: 400
+New story for testuser (123456789). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sent alert to 6147723761: 200
+New story for danfruhman (6147723761). Alert sent.
+Could not find story thumbnail for <danfruhman>
+Sent alert to 543859297: 200
+New story for danfruhman (543859297). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sleeping for 5 minutes...
+Sent alert to 123456789: 400
+New story for testuser (123456789). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sent alert to 6147723761: 200
+New story for danfruhman (6147723761). Alert sent.
+Could not find story thumbnail for <danfruhman>
+Sent alert to 543859297: 200
+New story for danfruhman (543859297). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sleeping for 5 minutes...
+Sent alert to 123456789: 400
+New story for testuser (123456789). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sent alert to 6147723761: 200
+New story for danfruhman (6147723761). Alert sent.
+Could not find story thumbnail for <danfruhman>
+Sent alert to 543859297: 200
+New story for danfruhman (543859297). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sleeping for 5 minutes...
+Sent alert to 123456789: 400
+New story for testuser (123456789). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sent alert to 6147723761: 200
+New story for danfruhman (6147723761). Alert sent.
+Could not find story thumbnail for <danfruhman>
+Sent alert to 543859297: 200
+New story for danfruhman (543859297). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sleeping for 5 minutes...
+Sent alert to 123456789: 400
+New story for testuser (123456789). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sent alert to 6147723761: 200
+New story for danfruhman (6147723761). Alert sent.
+Could not find story thumbnail for <danfruhman>
+Sent alert to 543859297: 200
+New story for danfruhman (543859297). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sleeping for 5 minutes...
+Sent alert to 123456789: 400
+New story for testuser (123456789). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sent alert to 6147723761: 200
+New story for danfruhman (6147723761). Alert sent.
+Could not find story thumbnail for <danfruhman>
+Sent alert to 543859297: 200
+New story for testuser (123456789). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sent alert to 6147723761: 200
+New story for danfruhman (6147723761). Alert sent.
+Could not find story thumbnail for <danfruhman>
+Sent alert to 543859297: 200
+New story for danfruhman (543859297). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sleeping for 5 minutes...
+Sent alert to 123456789: 400
+New story for testuser (123456789). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sent alert to 6147723761: 200
+New story for danfruhman (6147723761). Alert sent.
+Could not find story thumbnail for <danfruhman>
+Sent alert to 543859297: 200
+New story for danfruhman (543859297). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sleeping for 5 minutes...
+Sent alert to 123456789: 400
+New story for testuser (123456789). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sent alert to 6147723761: 200
+New story for danfruhman (6147723761). Alert sent.
+Could not find story thumbnail for <danfruhman>
+Sent alert to 543859297: 200
+New story for danfruhman (543859297). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sleeping for 5 minutes...
+Sent alert to 123456789: 400
+New story for testuser (123456789). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sent alert to 6147723761: 200
+New story for danfruhman (6147723761). Alert sent.
+Could not find story thumbnail for <danfruhman>
+Sent alert to 543859297: 200
+New story for danfruhman (543859297). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sleeping for 5 minutes...
+Sent alert to 123456789: 400
+New story for testuser (123456789). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sent alert to 6147723761: 200
+New story for danfruhman (6147723761). Alert sent.
+Could not find story thumbnail for <danfruhman>
+Sent alert to 543859297: 200
+New story for danfruhman (543859297). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sleeping for 5 minutes...
+Sent alert to 123456789: 400
+New story for testuser (123456789). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sent alert to 6147723761: 200
+New story for danfruhman (6147723761). Alert sent.
+Could not find story thumbnail for <danfruhman>
+Sent alert to 543859297: 200
+New story for danfruhman (543859297). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sleeping for 5 minutes...
+Sent alert to 123456789: 400
+New story for testuser (123456789). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sent alert to 6147723761: 200
+New story for danfruhman (6147723761). Alert sent.
+Could not find story thumbnail for <danfruhman>
+Sent alert to 543859297: 200
+New story for danfruhman (543859297). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sleeping for 5 minutes...
+Sent alert to 123456789: 400
+New story for testuser (123456789). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sent alert to 6147723761: 200
+New story for danfruhman (6147723761). Alert sent.
+Could not find story thumbnail for <danfruhman>
+Sent alert to 543859297: 200
+New story for danfruhman (543859297). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sleeping for 5 minutes...
+Sent alert to 123456789: 400
+New story for testuser (123456789). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sent alert to 6147723761: 200
+New story for danfruhman (6147723761). Alert sent.
+Could not find story thumbnail for <danfruhman>
+Sent alert to 543859297: 200
+New story for danfruhman (543859297). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sleeping for 5 minutes...
+Sent alert to 123456789: 400
+New story for testuser (123456789). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sent alert to 6147723761: 200
+New story for danfruhman (6147723761). Alert sent.
+Could not find story thumbnail for <danfruhman>
+Sent alert to 543859297: 200
+New story for danfruhman (543859297). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sleeping for 5 minutes...
+Sent alert to 123456789: 400
+New story for testuser (123456789). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sent alert to 6147723761: 200
+New story for danfruhman (6147723761). Alert sent.
+Could not find story thumbnail for <danfruhman>
+Sent alert to 543859297: 200
+New story for danfruhman (543859297). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sleeping for 5 minutes...
+Sent alert to 123456789: 400
+New story for testuser (123456789). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sent alert to 6147723761: 200
+New story for danfruhman (6147723761). Alert sent.
+Could not find story thumbnail for <danfruhman>
+Sent alert to 543859297: 200
+New story for danfruhman (543859297). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sleeping for 5 minutes...
+Sent alert to 123456789: 400
+New story for testuser (123456789). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sent alert to 6147723761: 200
+New story for danfruhman (6147723761). Alert sent.
+Could not find story thumbnail for <danfruhman>
+Sent alert to 543859297: 200
+New story for danfruhman (543859297). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sleeping for 5 minutes...
+Sent alert to 123456789: 400
+New story for testuser (123456789). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sent alert to 6147723761: 200
+New story for danfruhman (6147723761). Alert sent.
+Could not find story thumbnail for <danfruhman>
+Sent alert to 543859297: 200
+New story for danfruhman (543859297). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sleeping for 5 minutes...
+Sent alert to 123456789: 400
+New story for testuser (123456789). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sent alert to 6147723761: 200
+New story for danfruhman (6147723761). Alert sent.
+Could not find story thumbnail for <danfruhman>
+Sent alert to 543859297: 200
+New story for danfruhman (543859297). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sleeping for 5 minutes...
+Sent alert to 123456789: 400
+New story for testuser (123456789). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sent alert to 6147723761: 200
+New story for danfruhman (6147723761). Alert sent.
+Could not find story thumbnail for <danfruhman>
+Sent alert to 543859297: 200
+New story for danfruhman (543859297). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sleeping for 5 minutes...
+Sent alert to 123456789: 400
+New story for testuser (123456789). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sent alert to 6147723761: 200
+New story for danfruhman (6147723761). Alert sent.
+Could not find story thumbnail for <danfruhman>
+Sent alert to 543859297: 200
+New story for danfruhman (543859297). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sleeping for 5 minutes...
+Sent alert to 123456789: 400
+New story for testuser (123456789). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sent alert to 6147723761: 200
+New story for danfruhman (6147723761). Alert sent.
+Could not find story thumbnail for <danfruhman>
+Sent alert to 543859297: 200
+New story for danfruhman (543859297). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sleeping for 5 minutes...
+Sent alert to 123456789: 400
+New story for testuser (123456789). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sent alert to 6147723761: 200
+New story for danfruhman (6147723761). Alert sent.
+Could not find story thumbnail for <danfruhman>
+Sent alert to 543859297: 200
+New story for danfruhman (543859297). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sleeping for 5 minutes...
+Sent alert to 123456789: 400
+New story for testuser (123456789). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sent alert to 6147723761: 200
+New story for danfruhman (6147723761). Alert sent.
+Could not find story thumbnail for <danfruhman>
+Sent alert to 543859297: 200
+New story for danfruhman (543859297). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+New story for danfruhman (543859297). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sleeping for 5 minutes...
+Sent alert to 123456789: 400
+New story for testuser (123456789). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sent alert to 6147723761: 200
+New story for danfruhman (6147723761). Alert sent.
+Could not find story thumbnail for <danfruhman>
+Sent alert to 543859297: 200
+New story for danfruhman (543859297). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sleeping for 5 minutes...
+Sent alert to 123456789: 400
+New story for testuser (123456789). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sent alert to 6147723761: 200
+New story for danfruhman (6147723761). Alert sent.
+Could not find story thumbnail for <danfruhman>
+Sent alert to 543859297: 200
+New story for danfruhman (543859297). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sleeping for 5 minutes...
+Sent alert to 123456789: 400
+New story for testuser (123456789). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sent alert to 6147723761: 200
+New story for danfruhman (6147723761). Alert sent.
+Could not find story thumbnail for <danfruhman>
+Sent alert to 543859297: 200
+New story for danfruhman (543859297). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sleeping for 5 minutes...
+Sent alert to 123456789: 400
+New story for testuser (123456789). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sent alert to 6147723761: 200
+New story for danfruhman (6147723761). Alert sent.
+Could not find story thumbnail for <danfruhman>
+Sent alert to 543859297: 200
+New story for danfruhman (543859297). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sleeping for 5 minutes...
+Sent alert to 123456789: 400
+New story for testuser (123456789). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sent alert to 6147723761: 200
+New story for danfruhman (6147723761). Alert sent.
+Could not find story thumbnail for <danfruhman>
+Sent alert to 543859297: 200
+New story for danfruhman (543859297). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sleeping for 5 minutes...
+Sent alert to 123456789: 400
+New story for testuser (123456789). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sent alert to 6147723761: 200
+New story for danfruhman (6147723761). Alert sent.
+Could not find story thumbnail for <danfruhman>
+Sent alert to 543859297: 200
+New story for danfruhman (543859297). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sleeping for 5 minutes...
+Sent alert to 123456789: 400
+New story for testuser (123456789). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sent alert to 6147723761: 200
+New story for danfruhman (6147723761). Alert sent.
+Could not find story thumbnail for <danfruhman>
+Sent alert to 543859297: 200
+New story for danfruhman (543859297). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sleeping for 5 minutes...
+Sent alert to 123456789: 400
+New story for testuser (123456789). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sent alert to 6147723761: 200
+New story for danfruhman (6147723761). Alert sent.
+Could not find story thumbnail for <danfruhman>
+Sent alert to 543859297: 200
+New story for danfruhman (543859297). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sleeping for 5 minutes...
+Sent alert to 123456789: 400
+New story for testuser (123456789). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sent alert to 6147723761: 200
+New story for danfruhman (6147723761). Alert sent.
+Could not find story thumbnail for <danfruhman>
+Sent alert to 543859297: 200
+New story for danfruhman (543859297). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sleeping for 5 minutes...
+Sent alert to 123456789: 400
+New story for testuser (123456789). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sent alert to 6147723761: 200
+New story for danfruhman (6147723761). Alert sent.
+Could not find story thumbnail for <danfruhman>
+Sent alert to 543859297: 200
+New story for danfruhman (543859297). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sleeping for 5 minutes...
+Sent alert to 123456789: 400
+New story for testuser (123456789). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sent alert to 6147723761: 200
+New story for danfruhman (6147723761). Alert sent.
+Could not find story thumbnail for <danfruhman>
+Sent alert to 543859297: 200
+New story for danfruhman (543859297). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sleeping for 5 minutes...
+Sent alert to 123456789: 400
+New story for testuser (123456789). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sent alert to 6147723761: 200
+New story for danfruhman (6147723761). Alert sent.
+Could not find story thumbnail for <danfruhman>
+Sent alert to 543859297: 200
+New story for danfruhman (543859297). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sleeping for 5 minutes...
+Sent alert to 123456789: 400
+New story for testuser (123456789). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sent alert to 6147723761: 200
+New story for danfruhman (6147723761). Alert sent.
+Could not find story thumbnail for <danfruhman>
+Sent alert to 543859297: 200
+New story for danfruhman (543859297). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sleeping for 5 minutes...
+Sent alert to 123456789: 400
+New story for testuser (123456789). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sent alert to 6147723761: 200
+New story for danfruhman (6147723761). Alert sent.
+Could not find story thumbnail for <danfruhman>
+Sent alert to 543859297: 200
+New story for danfruhman (543859297). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sleeping for 5 minutes...
+Sent alert to 123456789: 400
+New story for testuser (123456789). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sent alert to 6147723761: 200
+New story for danfruhman (6147723761). Alert sent.
+Could not find story thumbnail for <danfruhman>
+Sent alert to 543859297: 200
+New story for danfruhman (543859297). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sleeping for 5 minutes...
+Sent alert to 123456789: 400
+New story for testuser (123456789). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sent alert to 6147723761: 200
+New story for danfruhman (6147723761). Alert sent.
+Could not find story thumbnail for <danfruhman>
+Sent alert to 543859297: 200
+New story for danfruhman (543859297). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sleeping for 5 minutes...
+Sent alert to 123456789: 400
+New story for testuser (123456789). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sent alert to 6147723761: 200
+New story for danfruhman (6147723761). Alert sent.
+Could not find story thumbnail for <danfruhman>
+Sent alert to 543859297: 200
+New story for danfruhman (543859297). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sleeping for 5 minutes...
+Sent alert to 123456789: 400
+New story for testuser (123456789). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sent alert to 6147723761: 200
+New story for danfruhman (6147723761). Alert sent.
+Could not find story thumbnail for <danfruhman>
+Sent alert to 543859297: 200
+New story for danfruhman (543859297). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sleeping for 5 minutes...
+Sent alert to 123456789: 400
+New story for testuser (123456789). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sent alert to 6147723761: 200
+New story for danfruhman (6147723761). Alert sent.
+Could not find story thumbnail for <danfruhman>
+Sent alert to 543859297: 200
+New story for danfruhman (543859297). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sleeping for 5 minutes...
+Sent alert to 123456789: 400
+New story for testuser (123456789). Alert sent.
+Could not find story thumbnail for pearlygatesbaby
+Sent alert to 6147723761: 200
+New story for danfruhman (6147723761). Alert sent.
+Could not find story thumbnail for <danfruhman>
