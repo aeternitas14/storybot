@@ -39,8 +39,8 @@ if not bot_token:
 
 application = Application.builder().token(bot_token).build()
 
-# Initialize Instagram monitor
-monitor = InstagramMonitor()
+monitor = InstagramMonitor(instagram_username=ig_username,
+                           instagram_password=ig_password)
 
 def load_users() -> Dict[str, List[str]]:
     """Load users from the users file."""
