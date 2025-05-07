@@ -3,7 +3,7 @@ import json
 import os
 
 USERS_FILE = "users.json"
-BOT_TOKEN = "7569840561:AAHnbeez9FcYFM_IpwyxJ1AwaiqKA7r_jiA"
+BOT_TOKEN = ""
 
 def load_users():
     if os.path.exists(USERS_FILE):
